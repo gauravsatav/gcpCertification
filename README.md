@@ -25,7 +25,7 @@ GCP Machine Learning Certification Exam Notes
 ## [Production Machine Learning Systems](Production Machine Learning Systems)
 
 
-## [Image Understanding with TensorFlow on Google Cloud](Image Understanding with TensorFlow on Google Cloud)
+## [Image Understanding with TensorFlow on Google Cloud](/Image_Understanding_with_TensorFlow_on_Google_Cloud/notes.md)
 
 
 ## [Sequence Models for Time Series and Natural Language Processing on Google Cloud](Sequence Models for Time Series and Natural Language Processing on Google Cloud)
