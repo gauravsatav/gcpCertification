@@ -28,9 +28,7 @@ GCP Machine Learning Certification Exam Notes
 ## [Image Understanding with TensorFlow on Google Cloud](Image Understanding with TensorFlow on Google Cloud)
 
 
-## [Sequence Models for Time Series and Natural Language Processing on Google Cloud](Sequence Models for Time Series 
-
-and Natural Language Processing on Google Cloud)
+## [Sequence Models for Time Series and Natural Language Processing on Google Cloud](Sequence Models for Time Series and Natural Language Processing on Google Cloud)
 ## [Recommendation Systems with TensorFlow on Google Cloud](Recommendation Systems with TensorFlow on Google Cloud)
 
 
@@ -40,12 +38,8 @@ and Natural Language Processing on Google Cloud)
 ## [ML Pipelines on Google Cloud](ML Pipelines on Google Cloud)
 
 
-## [Perform Foundational Data, ML, and AI Tasks in Google Cloud](Perform Foundational Data, ML, and AI Tasks in 
-
-Google Cloud)
+## [Perform Foundational Data, ML, and AI Tasks in Google Cloud](Perform Foundational Data, ML, and AI Tasks in Google Cloud)
 ## [Explore Machine Learning Models with Explainable AI](Explore Machine Learning Models with Explainable AI)
 
 
-## [Build and Deploy Machine Learning Solutions on Vertex AI](Build and Deploy Machine Learning Solutions on Vertex 
-
-AI)
+## [Build and Deploy Machine Learning Solutions on Vertex AI](Build and Deploy Machine Learning Solutions on VertexAI)
