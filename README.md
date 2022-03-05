@@ -1,32 +1,36 @@
-# gcpCertification
-GCP Machine Learning Certification Exam Notes
+#_gcpCertification
+GCP_Machine_Learning_Certification_Exam_Notes
 
-#### [Google_Cloud_Big_Data_and_Machine_Learning_Fundamentals](/Google_Cloud_Big_Data_and_Machine_Learning_Fundamentals/notes.md)
+[[_TOC_]]
 
-#### [How_Google_Does_Machine_Learning](/How_Google_Does_Machine_Learning/notes.md)
+* [0_A_Tour_of_Google_Cloud_Hands-on_Labs](0_A_Tour_of_Google_Cloud_Hands-on_Labs/notes.md)
 
-#### [Launching_into_Machine_Learning](/Launching_into_Machine_Learning/notes.md)
+* [1_Google_Cloud_Big_Data_and_Machine_Learning_Fundamentals](1_Google_Cloud_Big_Data_and_Machine_Learning_Fundamentals/notes.md)
 
-#### [Introduction_to_TensorFlow](/Introduction_to_TensorFlow/notes.md)
+* [2_How_Google_Does_Machine_Learning](2_How_Google_Does_Machine_Learning/notes.md)
 
-#### [Feature_Engineering](/Feature_Engineering/notes.md)
+* [3_Launching_into_Machine_Learning](3_Launching_into_Machine_Learning/notes.md)
 
-#### [Art_and_Science_of_Machine_Learning](/Art_and_Science_of_Machine_Learning/notes.md)
+* [4_Introduction_to_TensorFlow](4_Introduction_to_TensorFlow/notes.md)
 
-#### [Production_Machine_Learning_Systems](/Production_Machine_Learning_Systems/notes.md)
+* [5_Feature_Engineering](5_Feature_Engineering/notes.md)
 
-#### [Image_Understanding_with_TensorFlow_on_Google_Cloud](/Image_Understanding_with_TensorFlow_on_Google_Cloud/notes.md)
+* [6_Art_and_Science_of_Machine_Learning](6_Art_and_Science_of_Machine_Learning/notes.md)
 
-#### [Sequence_Models_for_Time_Series_and_Natural_Language_Processing_on_Google_Cloud](/Sequence_Models_for_Time_Series_and_Natural_Language_Processing_on_Google_Cloud/notes.md)
+* [7_Production_Machine_Learning_Systems](7_Production_Machine_Learning_Systems/notes.md)
 
-#### [Recommendation_Systems_with_TensorFlow_on_Google_Cloud](/Recommendation_Systems_with_TensorFlow_on_Google_Cloud/notes.md)
+* [8_Image_Understanding_with_TensorFlow_on_Google_Cloud](8_Image_Understanding_with_TensorFlow_on_Google_Cloud/notes.md)
 
-#### MLOps_(Machine_Learning_Operations)[_Fundamentals](/LOps_(Machine_Learning_Operations)[_Fundamentals/notes.md)
+* [9_Sequence_Models_for_Time_Series_and_Natural_Language_Processing_on_Google_Cloud](9_Sequence_Models_for_Time_Series_and_Natural_Language_Processing_on_Google_Cloud/notes.md)
 
-#### [ML_Pipelines_on_Google_Cloud](/ML_Pipelines_on_Google_Cloud/notes.md)
+* [10_Recommendation_Systems_with_TensorFlow_on_Google_Cloud](10_Recommendation_Systems_with_TensorFlow_on_Google_Cloud/notes.md)
 
-#### Perform_Foundational_Data,_ML,[_and_AI_Tasks_in_Google_Cloud](/erform_Foundational_Data,_ML,[_and_AI_Tasks_in_Google_Cloud/notes.md)
+* [11_MLOps_(Machine_Learning_Operations)_Fundamentals](11_MLOps_(Machine_Learning_Operations)_Fundamentals/notes.md)
 
-#### [Explore_Machine_Learning_Models_with_Explainable_AI](/Explore_Machine_Learning_Models_with_Explainable_AI/notes.md)
+* [12_ML_Pipelines_on_Google_Cloud](12_ML_Pipelines_on_Google_Cloud/notes.md)
 
-#### [Build_and_Deploy_Machine_Learning_Solutions_on_Vertex_AI](/Build_and_Deploy_Machine_Learning_Solutions_on_Vertex_AI/notes.md)
+* [13_Perform_Foundational_Data,_ML,_and_AI_Tasks_in_Google_Cloud](13_Perform_Foundational_Data,_ML,_and_AI_Tasks_in_Google_Cloud/notes.md)
+
+* [14_Explore_Machine_Learning_Models_with_Explainable_AI](14_Explore_Machine_Learning_Models_with_Explainable_AI/notes.md)
+
+* [15_Build_and_Deploy_Machine_Learning_Solutions_on_Vertex_AI](15_Build_and_Deploy_Machine_Learning_Solutions_on_Vertex_AI/notes.md)
