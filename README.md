@@ -1,12 +1,60 @@
-#_gcpCertification
-GCP_Machine_Learning_Certification_Exam_Notes
+# gcpCertification
+GCP Machine Learning Certification Exam Notes
 
 [[_TOC_]]
 
 * [0_A_Tour_of_Google_Cloud_Hands-on_Labs](0_A_Tour_of_Google_Cloud_Hands-on_Labs/notes.md)
 
 * [1_Google_Cloud_Big_Data_and_Machine_Learning_Fundamentals](1_Google_Cloud_Big_Data_and_Machine_Learning_Fundamentals/notes.md)
-
+    * Introduction to the Google Cloud Big Data and Machine Learning Fundamentals Course
+        * Welcome to Google Cloud Big Data and Machine Learning Fundamentals
+        * Introduction to Google Cloud
+        * Compute Power for Analytic and ML Workloads
+        * Elastic Storage with Google Cloud Storage
+        * Evolution of Google Cloud Big Data Tools
+        * Google Cloud Public Datasets program
+        * Exploring a BigQuery Public Dataset
+        * Choosing the right approach
+        * What you can do with Google Cloud
+        * Module Review
+        * Module Resources
+    * Recommending Products using Cloud SQL and Spark
+        * How businesses use recommendation systems
+        * Introduction to machine learning
+        * Recommending Products Using Cloud SQL and Spark
+        * Module Review
+        * Module Resources
+    * Predict Visitor Purchases Using BigQuery ML
+        * Introduction to BigQuery
+        * Data quality
+        * BigQuery managed storage
+        * Insights from geographic data
+        * Choosing a ML model type for structured data
+        * Predicting customer lifetime value
+        * Phases in ML model lifecycle
+        * Predicting Visitor Purchases with a Classification Model with BigQuery ML
+        * Module Review
+        * Module Resources
+    * Modern data pipeline challenges
+        * Designing streaming pipelines with Apache Beam
+        * Implementing streaming pipelines on Dataflow
+        * Visualizing insights with Data Studio
+        * Creating charts with Data Studio
+        * Data Studio walkthrough
+        * Module Review
+        * Module Resources
+    * Deriving Insights from Unstructured Data using Machine Learning
+        * Comparing approaches to ML
+        * Classifying Images of Clouds in the Cloud with AutoML Vision
+        * Building a Custom Model
+        * Additional resources to build custom models
+        * Module Review
+        * Module Resources
+    * Summary
+        * Course Summary
+    * Course Resource
+        * Course resources
+        
 * [2_How_Google_Does_Machine_Learning](2_How_Google_Does_Machine_Learning/notes.md)
 
 * [3_Launching_into_Machine_Learning](3_Launching_into_Machine_Learning/notes.md)

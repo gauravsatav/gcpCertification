@@ -5,4 +5,3 @@
 ## 0 A Tour of Google Cloud Hands-on Labs
 
 [TOC]
-        
