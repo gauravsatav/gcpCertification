@@ -49,4 +49,3 @@ for section in courses:
             q = q+'\n\t* '
             q = q+'\n\t\t* '.join(course)
 
-

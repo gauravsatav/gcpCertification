@@ -1,6 +1,16 @@
 # gcpCertification
 GCP Machine Learning Certification Exam Notes
 
+Couses in Learning path:
+* 1. Google Cloud Big Data and Machine Learning Fundamentals
+* 2. How Google Does Machine Learning
+* 7. Production Machine Learning Systems
+* 11. MLOps (Machine Learning Operations) Fundamentals
+* 12. ML Pipelines on Google Cloud
+* 13. Perform Foundational Data, ML, and AI Tasks in Google Cloud
+* 14. Explore Machine Learning Models with Explainable AI
+* 15. Build and Deploy Machine Learning Solutions on Vertex AI
+
 [[_TOC_]]
 
 ### [0_A_Tour_of_Google_Cloud_Hands-on_Labs](0_A_Tour_of_Google_Cloud_Hands-on_Labs/notes.md)
@@ -55,7 +65,7 @@ GCP Machine Learning Certification Exam Notes
 * Course Resource
     * Course resources
         
-### [2_How_Google_Does_Machine_Learning](2_How_Google_Does_Machine_Learning/notes.md)
+### [2_How_Google_Does_Machine_Learning](2_How_Google_Does_Machine_Learning/notes.md)   
 * Welcome to Machine Learning on Google Cloud
 	* Welcome to Machine Learning on Google Cloud
 * What It Means To Be AI First
