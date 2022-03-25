@@ -152,9 +152,91 @@ What do we store in metadata store?
 
 ##  Continuous Training with Cloud Composer
 
-![image-20220321191105955](images/image-20220321191105955.png)
+* The underlying open-source technology of Cloud Composer is Apache Airflow. 
+
+* Apache Airflow is a popular open-source tool developed and open-sourced by Airbnb to offer, schedule, and monitor your workflows. 
+
+  <img src="images/image-20220324131213927.png" alt="image-20220324131213927" style="zoom:67%;" />
+
+* Look at the list of limitations at the bottom, that's where cloud composer helps<img src="images/image-20220324131314760.png" alt="image-20220324131314760" style="zoom:67%;" />
+
+
+
+* Cloud Composer is a fully managed implementation of Apache Airflow on Google Cloud. 
+
+  * It will handle the provisioning of a Google Kubernetes Engine Cluster with Airflow installed and a Cloud SQL database on a tenent project for use as the Airflow database. 
+  * Logging and monitoring agents are preinstalled in your cluster so you can use cloud operations to monitor and debug your Cloud Composer environment. 
+
+  <img src="images/image-20220324131410147.png" alt="image-20220324131410147" style="zoom:67%;" />
+
+* <img src="images/image-20220324131722819.png" alt="image-20220324131722819" style="zoom:80%;" />
+
+  * In short, you can focus on using Airflow for orchestrating your workflows and not worry about where or how your DAGs will run and interact with tools on Google Cloud.
+
+* <img src="images/image-20220324131859839.png" alt="image-20220324131859839" style="zoom:80%;" />
+
+  * YOu can leave google cloud and still use it on different cloud platforms<img src="images/image-20220324132025410.png" alt="image-20220324132025410" style="zoom:80%;" />
+
+  <img src="images/image-20220321191105955.png" alt="image-20220321191105955" style="zoom:80%;" />
 
 ###  Core Concepts of Apache Airflow
+
+* Airflow DAG is defined in a Python script.<img src="images/image-20220324132343125.png" alt="image-20220324132343125" style="zoom:80%;" />
+
+* The scripts have five main sections:
+
+  * **<u>Imports</u>**
+    * <img src="images/image-20220324133125863.png" alt="image-20220324133125863" style="zoom:80%;" />
+  * **<u>Arguments:</u>**
+    * <img src="images/image-20220324133159439.png" alt="image-20220324133159439" style="zoom:80%;" />
+      *  **<u>depends_on_past</u>**, when set to true, keeps a task from being triggered if the previous schedule for the task did not succeed
+  *  **<u>Instantiation of the DAG</u>**
+    * <img src="images/image-20220324133316801.png" alt="image-20220324133316801" style="zoom:80%;" />
+      * **<u>catchup</u>**: Remember, we had a start date as one of our default arguments. If the start date was a year ago, what happens to the runs we missed? If catchup is false, we simply forget them. If catchup is true, however, we will backfill the runs with the appropriate execution time for each run.
+  *  **<u>Task definitions</u>**
+    * <img src="images/image-20220324133527579.png" alt="image-20220324133527579" style="zoom:80%;" />
+      * This task ID will be the name of the task within the DAG and will be used for reference and in the visual representation of the DAG in the Airflow web server.
+  * **<u>Dependencies.</u>**
+    * <img src="images/image-20220324133724375.png" alt="image-20220324133724375" style="zoom:80%;" />
+
+* <img src="images/image-20220324132518389.png" alt="image-20220324132518389" style="zoom:80%;" />
+
+* What are these tasks?
+
+  * They are parameterized implementations of operators that we will discuss in the next section.
+
+  * [01:54](javascript:;)Operators are usually, but not always, atomic. This means that they can work alone and they don't need to share resources with any other operators.
+
+  * The DAG will make sure that operators run in the correct order. Other than those dependencies, operators do generally run independently. In Airflow you can leverage x comms if you do need to pass information between different operators.
+
+* Airflow supports three main types of operators:
+
+  * operators that perform an action or tell another system to perform an action.
+  * There are transfer operators that move data from one system to another, for example, BigQuery to Cloud storage.
+
+  * And then, finally, sensors that will keep running until a specific criterion is met, such as a file sensor that waits until a file is present at a certain location before triggering any downstream task.
+
+* With the right terminology explained, we're ready to build our DAGs.
+
+  * As a reminder, an Airflow DAG is defined in a Python script.
+  * The scripts have five main sections:
+    *  imports, 
+    * arguments,
+    *  instantiation of the DAG,
+    *  task definitions, and 
+    * dependencies.
+
+* How do we create a Cloud Composer environment?
+
+  <img src="images/image-20220324134020983.png" alt="image-20220324134020983" style="zoom:80%;" />
+
+* how do we get our files onto the Airflow web server?<img src="images/image-20220324134124976.png" alt="image-20220324134124976" style="zoom:80%;" />
+
+  * all you need to do is be sure that your files make it to the right location in cloud storage, and the rest will be managed for you.
+
+* <img src="images/image-20220324132415284.png" alt="image-20220324132415284" style="zoom:80%;" />
+
+* 
 
 ###  Continuous Training Pipelines with Cloud Composer
 

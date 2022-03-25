@@ -1,6 +1,11 @@
 # gcpCertification
 GCP Machine Learning Certification Exam Notes
 
+* For any cloud certification or revision, start by memorizing the contents of a 
+  * [best practice documents](./bestPractices.md)
+  * Process document and the Recommended tools for each step in the process. There is often more than one way to construct a solution which is why also refer to the reference cloud architectures for the solution.
+  * Exam syllabus.
+
 Couses in Learning path:
 * 1. Google Cloud Big Data and Machine Learning Fundamentals
 * 2. How Google Does Machine Learning
@@ -64,7 +69,7 @@ Couses in Learning path:
     * Course Summary
 * Course Resource
     * Course resources
-        
+      
 ### [2_How_Google_Does_Machine_Learning](2_How_Google_Does_Machine_Learning/notes.md)   
 * Welcome to Machine Learning on Google Cloud
 	* Welcome to Machine Learning on Google Cloud

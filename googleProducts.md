@@ -35,6 +35,23 @@
 *  [Cloud Pub/Sub](https://cloud.google.com/pubsub)
 * *Cloud Composer*
 
+## Use recommended tools and products
+
+https://cloud.google.com/architecture/ml-on-gcp-best-practices#use-recommended-tools-and-products
+
+The following table lists recommended tools and products for each phase of the ML workflow as outlined in this document:
+
+| **Machine learning workflow step**                           | **Recommended tools and products**                           |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [ML environment setup](https://cloud.google.com/architecture/ml-on-gcp-best-practices#machine-learning-environment-setup) | [Vertex AI Workbench user-managed notebooks](https://cloud.google.com/vertex-ai/docs/workbench/user-managed)[Vertex SDK for Python](https://cloud.google.com/vertex-ai/docs/start/client-libraries#python) |
+| [ML development](https://cloud.google.com/architecture/ml-on-gcp-best-practices#machine-learning-development) | [BigQuery](https://cloud.google.com/bigquery/docs/introduction)[Cloud Storage](https://cloud.google.com/storage/docs/introduction)[Vertex AI Workbench user-managed notebooks](https://cloud.google.com/vertex-ai/docs/workbench/user-managed)[Vertex Data Labeling](https://cloud.google.com/vertex-ai/docs/datasets/data-labeling-job)[Vertex Explainable AI](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)[Vertex AI Feature Store](https://cloud.google.com/vertex-ai/docs/featurestore/overview)[Vertex AI TensorBoard](https://cloud.google.com/vertex-ai/docs/experiments/tensorboard-overview)[Vertex Training](https://cloud.google.com/ai-platform-unified/docs/training/create-model-custom-training) |
+| [Data processing](https://cloud.google.com/architecture/ml-on-gcp-best-practices#data-processing) | [BigQuery](https://cloud.google.com/bigquery/docs/introduction)[Dataflow](https://cloud.google.com/dataflow/docs)[Dataproc](https://cloud.google.com/dataproc/docs)[Managed datasets](https://cloud.google.com/vertex-ai/docs/training/using-managed-datasets)[TensorFlow Extended](https://www.tensorflow.org/tfx) |
+| [Operationalized training](https://cloud.google.com/architecture/ml-on-gcp-best-practices#operationalized-training) | [Cloud Storage](https://cloud.google.com/storage/docs/introduction)[PyTorch](https://pytorch.org/tutorials/recipes/recipes/saving_and_loading_a_general_checkpoint.html)[TensorFlow Core](https://www.tensorflow.org/overview)[Vertex AI Feature Store](https://cloud.google.com/vertex-ai/docs/featurestore/overview)[Vertex AI Pipelines](https://cloud.google.com/vertex-ai/docs/pipelines)[Vertex Training](https://cloud.google.com/vertex-ai/docs/training/create-model-custom-training) |
+| [Model deployment and serving](https://cloud.google.com/architecture/ml-on-gcp-best-practices#model-deployment-and-serving) | [Vertex Prediction](https://cloud.google.com/vertex-ai/docs/predictions/getting-predictions) |
+| [ML workflow orchestration](https://cloud.google.com/architecture/ml-on-gcp-best-practices#machine-learning-workflow-orchestration) | [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)[TensorFlow Extended](https://www.tensorflow.org/tfx)[Vertex AI Pipelines](https://cloud.google.com/vertex-ai/docs/pipelines) |
+| [Artifact organization](https://cloud.google.com/architecture/ml-on-gcp-best-practices#artifact-organization) | [Artifact Registry](https://cloud.google.com/artifact-management/docs) |
+| [Model monitoring](https://cloud.google.com/architecture/ml-on-gcp-best-practices#model-monitoring) | [Vertex Explainable AI](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)[Vertex Model Monitoring](https://cloud.google.com/vertex-ai/docs/model-monitoring/overview) |
+
 ![Steps of a TFX-based ML system on Google Cloud.](https://cloud.google.com/architecture/images/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build-3-tfx-google-cloud.svg)
 
 

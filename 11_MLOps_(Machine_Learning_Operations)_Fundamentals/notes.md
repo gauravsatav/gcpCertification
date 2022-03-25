@@ -379,11 +379,125 @@
 
 ##  Concept Overview
 
+* The goal is to run a cloud builder whenever a trigger is detected. This requires two things
+
+  * The actual individual cloud builder which will build the containers.
+
+  * A config file to tell which cloud builders to run 
+
+  * Trigger the actual build using the following command
+
+    <img src="images/image-20220324113353960.png" alt="image-20220324113353960" style="zoom:67%;" />
+
+    
+
 ###  Cloud Build Builders
+
+<img src="images/image-20220324111517061.png" alt="image-20220324111517061" style="zoom:67%;" />
+
+<img src="images/image-20220324111544990.png" alt="image-20220324111544990" style="zoom:67%;" />
+
+* Standard Builders are already packaged configuration actions that are really common such as building a docker container and pushing that docker container to a registry all these pre-packaged configuration actions are in the google cloud platform cloud builders repository.
+
+  * <img src="images/image-20220324111913328.png" alt="image-20220324111913328" style="zoom:67%;" />
+  * Components of a standard Cloud Builders.<img src="images/image-20220324111957874.png" alt="image-20220324111957874" style="zoom:50%;" />
+    * They boil down to two parts 
+      * one a script that executes the configuration actions and 
+      * two a docker container that wraps the script with all the dependencies that it needs to be executed
+      * Example Docker File<img src="images/image-20220324112512054.png" alt="image-20220324112512054" style="zoom: 67%;" />
+      * Example Script File <img src="images/image-20220324112610816.png" alt="image-20220324112610816" style="zoom:67%;" />
+
+* Custom Builders:  custom cloud builders are special configuration actions that you have to package into docker containers yourself generally these are pushed to your own google cloud registry
+
+  * <img src="images/image-20220324112703830.png" alt="image-20220324112703830" style="zoom:67%;" />
+
+  
 
 ###  Cloud Build Configuration
 
+* remember that the goal is to run a cloud builder whenever a trigger is detected well this raises the question how does cloud build know which cloud builder to run well the answer lies in a cloud build configuration file we tell cloud build which builders to run in a cloudbuild.yaml.
+
+* cloudbuild.yaml describes the cloud builder to be run and what arguments should be passed to the entry point command defined in the corresponding docker file 
+
+* <img src="images/image-20220324113150453.png" alt="image-20220324113150453" style="zoom:67%;" />
+
+  * the name is the uri of the corresponding cloud builder container 
+
+  * the args contains the arguments to be passed to the entry point.
+
+  * Trigger Cloud Build using the command
+
+    <img src="images/image-20220324113353960.png" alt="image-20220324113353960" style="zoom:67%;" />
+
+  * A single cloud builder step as defined in the above config file
+
+    <img src="images/image-20220324115838706.png" alt="image-20220324115838706" style="zoom:67%;" />
+
+    * The `dir` variable is a persistent data storage which will allow the data to be shared by the next pipeline step.
+
+      <img src="images/image-20220324120029093.png" alt="image-20220324120029093" style="zoom:50%;" />
+
+  * In the above command to run the actual cloud build we have a $Substitution variable which allows us to substitue variable values before the cloud build is run
+
+    * For example in the while runninng the cloud build command below we are substituting the 
+      * $_PIPELNE_FOLDER = . (this is the current directory)
+      * $_IMAGE_NAME with value = trainer_base
+
+    <img src="images/image-20220324120233670.png" alt="image-20220324120233670" style="zoom:67%;" />
+
+    * ​	Another way to passing dynamic values is to pass environment variables.<img src="images/image-20220324120652352.png" alt="image-20220324120652352" style="zoom:67%;" />
+
+* Difference between custom and standard builder
+
+  * Nothing except the uri will point to our own image in gcr<img src="images/image-20220324120519393.png" alt="image-20220324120519393" style="zoom:67%;" />
+
+* After building the images we need to push them
+
+  * Add the `Images` section to your config.yaml file.
+  * <img src="images/image-20220324120850757.png" alt="image-20220324120850757" style="zoom:67%;" />
+  * note you don't actually need to specify where to push these containers because the location is already given by the name of the container image that you built 
+  * if you forget this field your container will simply be built but not pushed so not available in production so it's very important to remember to push
+
 ###  Cloud Build Triggers
+
+* Trigger 1: Manual<img src="images/image-20220324121236565.png" alt="image-20220324121236565" style="zoom:67%;" />
+
+  * <img src="images/image-20220324121322147.png" alt="image-20220324121322147" style="zoom:67%;" />
+
+* Trigger 2: Automatically
+
+  <img src="images/image-20220324121414567.png" alt="image-20220324121414567" style="zoom:67%;" />
+
+  * Step 1: Link the Github Repo with the project.
+
+    * Go to github and activate Cloud Build App
+    * Allow access to the required repository.
+    * On the GCP side, specify which repo you want to add to cloud build
+
+  * Step 2: Setup trigger type
+
+    <img src="images/image-20220324121729100.png" alt="image-20220324121729100" style="zoom:50%;" />
+
+    * Specify location of the `config.yaml` file for cloud build.
+
+      <img src="images/image-20220324121833150.png" alt="image-20220324121833150" style="zoom:50%;" />
+
+  * Done!
+
+    <img src="images/image-20220324121901475.png" alt="image-20220324121901475" style="zoom:67%;" />
+
+  * Test
+
+    * push new code to github using a specific tag
+
+      ![image-20220324122109009](images/image-20220324122109009.png)
+
+    * Monitor the cloud build steps<img src="images/image-20220324122037048.png" alt="image-20220324122037048" style="zoom: 80%;" />
+
+      * Here the first training code image is built and pushed.
+      * Next, the base image of all the lightweight components are built and pushed.
+      * Then a Kubeflow pipeline is compiled into a .yaml file
+      * Finally the same kubeflow pipeline is uploaded to the cluster.
 
 ##  Course Summary
 
