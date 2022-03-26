@@ -315,20 +315,42 @@ Why do machine learning models lose their predictive power over time?
 * Two common use-cases of TensorFlow Data Validation within a TensorFlow Extended pipelines are 
   * validation of continuously arriving data 
   * training-serving skew detection.
+  
 * **<u>The ExampleGen component:</u>** This component takes raw data as input and generates TensorFlow examples,
   * it can take many input formats, for example CSV, TF Record.
   * It also splits the examples for you into Train/Eval.
   * It then passes the result to the StatisticsGen component.
+  
 * **<u>The Statistics Generation component:</u>** The Statistics Generation component, generates statistics for feature analysis.
+
 * **<u>The Schema Generation component</u>**, which gives you a description of your data.
+
 * **<u>The Example Validator component,</u>** which allows you to check for anomalies 
+
 * <img src="images/image-20220319191654879.png" alt="image-20220319191654879" style="zoom:80%;" />
+
 * <img src="images/image-20220319191720064.png" alt="image-20220319191720064" style="zoom:80%;" />
-* **<u>Training Service Skew</u>**: Training-serving skew occurs when training data is generated differently from how the data used to request predictions is generated. 
+
+* **<u>Training Service Skew</u>**: 
+
+  * 
+
+  * [Use the mean and sd calculated on entire dataset to normalize/standardize new data during prediciton](https://cloud.google.com/architecture/data-preprocessing-for-ml-with-tf-transform-pt1#preprocessing_granularity)
+
+  * Maintain the values for full-pass transforms operations as mentioned in the above article.
+
+    <img src="images/image-20220325221316411.png" alt="image-20220325221316411" style="zoom:80%;" />
+
+  * Training-serving skew occurs when training data is generated differently from how the data used to request predictions is generated. 
+
   * Possible causes might come from a change in how data is handled in training vs in production, or even a faulty sampling mechanism. 
+
   * Training-serving skew can also occur based on your data distribution in your training, validation, and testing data splits.
+
   * <img src="images/image-20220319191851144.png" alt="image-20220319191851144" style="zoom: 50%;" /><img src="images/image-20220319192022273.png" alt="image-20220319192022273" style="zoom:50%;" />
+
   * In Summary: <img src="images/image-20220319192120727.png" alt="image-20220319192120727" style="zoom:50%;" /><img src="images/image-20220319192136766.png" alt="image-20220319192136766" style="zoom:50%;" />
+
 
 ###  Components of TensorFlow data validation
 
