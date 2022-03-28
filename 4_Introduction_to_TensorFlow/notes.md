@@ -56,8 +56,8 @@ Wide and deep architecture.
   * <img src="images/image-20220314095522857.png" alt="image-20220314095522857" style="zoom:80%;" />
   * A data source constructs a Dataset from data stored in memory or in one or more files and 
   * a data transformation constructs a dataset from one or more tf.data.Dataset objects.
-  * <img src="images/image-20220314095724638.png" alt="image-20220314095724638" style="zoom:50%;" />
-  * <img src="images/image-20220314095441767.png" alt="image-20220314095441767" style="zoom:50%;" />
+  * <img src="images/image-20220314095724638.png" alt="image-20220314095724638" style="zoom: 80%;" />
+  * <img src="images/image-20220314095441767.png" alt="image-20220314095441767" style="zoom: 80%;" />
   * TFRecordDataset format is a simple format for storing a sequence of binary records. It is useful for standardizing input data and optimizing performance.
   * iter Method is invoked on the dataset - which triggers creation and execution of two operations
   * FixedLengthRecordDataset is a dataset object which has fixed-length records from one or more binary files
@@ -65,8 +65,8 @@ Wide and deep architecture.
   * Important Methods
     * tf.decode_csv(row,record_defaults,features,label,)
     * tf.data.Dataset.list_files(path).flat_map(tf.data.TextLineDataset).map(parse_row)
-      * .flat_map() is a one to many transformation since we're doing it for every file in the folder and to flatten all the read files into single object.
-      * .map() is a one to one transformation since we're parsing a single line of text at a time
+      * .flat_map() is a **<u>one to many</u>** transformation since we're doing it for every file in the folder and to flatten all the read files into single object.
+      * .map() is a **<u>one to one</u>** transformation since we're parsing a single line of text at a time
   * Dataset allows data to be prefetched.
   * <img src="images/image-20220314093406929.png" alt="image-20220314093406929" style="zoom:80%;" />
 
@@ -103,23 +103,23 @@ Wide and deep architecture.
 ####  Feature Analysis Using TensorFlow Data Validation and Facets
 
 * The TF data validation is used -> missing values, imbalances
-* Facets is a visualization tool that describes data stats.
+* **<u>Facets</u>** is a visualization tool that describes data stats.
 
 ### Training neural networks with Tensorflow 2 and the Keras Sequential API
 
 ####  Activation functions
 
-* Activation functions are can be used to add non-linearity to a model by adding a non-linear activation functions like sigmoid, tanh, relu
+* Activation functions  can be used to add non-linearity to a model by adding a non-linear activation functions like sigmoid, tanh, relu
   * <img src="images/image-20220314102728393.png" alt="image-20220314102728393" style="zoom:67%;" /> 
-  * Generally all the non linear layer of a neural network can usually be collapsed by into a single layer, which is why you don't have them in your network, expect for in the final layer which can have linear tranformation for regression and sigmoid or softmax for classification
+  * Generally all the non linear layer of a neural network can usually be collapsed by into a single layer, which is why you don't have them in your network, except for in the final layer which can have linear tranformation for regression and sigmoid or softmax for classification
   * Relu has 10x speed on training than sigmoid.
-  * Softplus<img src="images/image-20220314104107533.png" alt="image-20220314104107533" style="zoom:50%;" />
-  * Leaky and parametric Relu<img src="images/image-20220314104138938.png" alt="image-20220314104138938" style="zoom:50%;" />
+  * Softplus<img src="images/image-20220314104107533.png" alt="image-20220314104107533" style="zoom: 80%;" />
+  * Leaky and parametric Relu<img src="images/image-20220314104138938.png" alt="image-20220314104138938" style="zoom: 80%;" />
   * ELU <img src="images/image-20220314104242309.png" alt="image-20220314104242309" style="zoom:50%;" />
 
 * Backpropagation
 
-  * Ideally we should keep our gradients as close to 1 as possible.
+  * Ideally we should keep our gradients as close to 1 as possible as it speeds up training.
 
   * There are 3 common problems with gradient descent
 
@@ -128,7 +128,7 @@ Wide and deep architecture.
   * Vanishing Gradients
 
     * Each additional layer can decrease signal (not noise).
-    * Eg: as we approach the 1, the sigmoid output platues to appx 0,
+    * Eg: as we approach the 1, the derivative of sigmoid appx to 0
     * since the gradient value compounds, it eventually vanishes and this causes the weights to no longer update, grinding the training to halt.
     * Solution:
       * Use non linear activation functions like relu.
@@ -181,7 +181,7 @@ Wide and deep architecture.
     * Optimzer : optimizers shape and mold your model into its most accurate possible form by playing around with those weights. Examples of optimzers
       * **<u>SGD</u>** (stochastic gradient descent): 
       * **<u>adam</u>** :  invariability due to the diagonal rescaling of the gradients.
-        *  is well suited for models that have large and large and large data sets or if you have a lot of parameters that you're adjusting
+        *  is well suited for models that have large data sets or if you have a lot of parameters that you're adjusting
         * appropriate for problems with very noisy or sparse gradients and non-stationary objectives
       * **<u>momentum</u>** :  reduces the learning rate when the gradient values are smal
       * **<u>adagrad</u>** : It gives frequently occurring features low learning rates.
@@ -225,9 +225,9 @@ Wide and deep architecture.
 * With that functional api models are defined by creating instances of layers and then connecting them directly to each other's in pairs then defining a model that specifies the layers to act as the input and the output to the model
   * Unlike the Keras Sequential API, we have to provide the shape of the input to the model.
   * The input layer needs to have shape(p,)where p is the number of columns in your training matrix. For example:inputs = Input(shape=(3,))
-* Benefits of Functional API over Sequential API:
-  * it can handle models with non-linear topology models 
-  * with shared layers and 
+* Benefits of Functional API over Sequential API it can handle :
+  * models with non-linear topology 
+  * models with shared layers and 
   * models with multiple inputs or outputs
 * <img src="images/image-20220314130007171.png" alt="image-20220314130007171" style="zoom:80%;" />
 
@@ -244,6 +244,10 @@ Wide and deep architecture.
 
 **<u>CREATE A WIDE AND DEEP MODEL</u>**
 
+* In the below code 
+
+* `import tf.feature_column as fc`
+
 * <img src="images/image-20220314131838792.png" alt="image-20220314131838792" style="zoom:80%;" />
 
 * ![image-20220314132516135](images/image-20220314132516135.png)
@@ -259,7 +263,7 @@ Wide and deep architecture.
 
 When Model Complexity becomes the cause of a model to overfit we use regularization. 
 
-* Regularization refers to any technique that helps generalize a model a generalized model
+* **<u>Regularization refers to any technique that helps generalize a model a generalized model</u>**
 
 * our basic heuristic guide is in favoring those simpler models which make less assumptions about your training data 
 

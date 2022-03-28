@@ -104,6 +104,16 @@
 
 ####  Exploratory Data Analysis Using Python and BigQuery
 
+### Data Preparation
+
+UnderSampling 
+
+[Imbalanced Data  | Data Preparation and Feature Engineering for Machine Learning  | Google Developers](https://developers.google.com/machine-learning/data-prep/construct/sampling-splitting/imbalanced-data#downsampling-and-upweighting)
+
+* To avoid data imbalance you have 2 options
+  * Downsample Majority Class
+  * Upweight (give more importance)  minority class
+
 ###  Practical ML
 
 ####  Supervised Learning
@@ -328,6 +338,10 @@ Every backprop step consists of
 
 ####  Performance metrics
 
+* [Evaluate AutoML models  | Vertex AI  | Google Cloud](https://cloud.google.com/vertex-ai/docs/training/evaluating-automl-models#forecasting)
+
+* 
+
 * Performance Matrices are much more connected to business goals than loss functions which are used to train gradient descent.
 
 * Performance Metrics help us to reject models that have settled into inappropriate minima.
@@ -340,11 +354,13 @@ Every backprop step consists of
 
   
 
-####  Confusion Matrix
+* Classification
 
-* Precision 
-* Recall
-* AUC
+  <img src="images/image-20220327165411652.png" alt="image-20220327165411652" style="zoom: 80%;" /><img src="images/image-20220327165432908.png" alt="image-20220327165432908" style="zoom:80%;" /><img src="images/image-20220327165511721.png" alt="image-20220327165511721" style="zoom:80%;" />
+
+  
+
+  
 
 * Summary of Optimization![image-20220310004829820](images/image-20220310004829820.png)
 

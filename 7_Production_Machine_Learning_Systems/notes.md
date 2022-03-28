@@ -43,7 +43,7 @@
 
        
 
-       <img src="images/image-20220319150956488.png" alt="image-20220319150956488" style="zoom:50%;" />
+       <img src="images/image-20220319150956488.png" alt="image-20220319150956488" style="zoom: 80%;" />
 
      * **<u>Data Studio is used to Visualization</u>**
 
@@ -80,11 +80,11 @@
 
 * **<u>What is the relationship between the features and the lables? Is it changing or the same?</u>**
 
-* Static is  like physics and Dynamic is like fashion <img src="images/image-20220319153443219.png" alt="image-20220319153443219" style="zoom:50%;" />
+* Static is  like physics and Dynamic is like fashion <img src="images/image-20220319153443219.png" alt="image-20220319153443219" style="zoom: 80%;" />
 
 * If the relationship you're trying to model is constant, like physics, a statically trained model may be sufficient. If, in contrast, the relationship you're trying to model is one that changes, like fashion, the dynamically trained model might be more appropriate.
 
-* <img src="images/image-20220319153950980.png" alt="image-20220319153950980" style="zoom:50%;" />
+* <img src="images/image-20220319153950980.png" alt="image-20220319153950980" style="zoom: 80%;" />
 
 * **<u>Static Training</u>**: For static training, models are trained once and then pushed to AI platform
 
@@ -92,15 +92,15 @@
 
   * **<u>Cloud Functions</u>**: A new data file appears in Cloud Storage, and then the Cloud Function is launched. After that, the Cloud Function starts the AI Platform training job. And then the AI Platform writes out a new model.
 
-    <img src="images/image-20220319154201547.png" alt="image-20220319154201547" style="zoom:50%;" />
+    <img src="images/image-20220319154201547.png" alt="image-20220319154201547" style="zoom: 80%;" />
 
   * **<u>App Engine</u>**: A user makes a web request from a dashboard to App Engine, an AI Platform training job is launched, and the AI Platform job writes a new model to Cloud Storage. From there, the statistics of the training job are displayed to the user when the job is complete.
 
-    <img src="images/image-20220319154310608.png" alt="image-20220319154310608" style="zoom:50%;" />
+    <img src="images/image-20220319154310608.png" alt="image-20220319154310608" style="zoom: 80%;" />
 
   * **<u>Dataflow:</u>** The Dataflow pipeline is also possibly invoking the model for predictions. Here, the streaming topic is ingested into Pub/Sub from subscribers. Messages are then aggregated with Dataflow, and aggregated data is stored in BigQuery. AI Platform is launched on the arrival of new data in BigQuery, and then an updated model is deployed.
 
-    <img src="images/image-20220319154605427.png" alt="image-20220319154605427" style="zoom:50%;" />
+    <img src="images/image-20220319154605427.png" alt="image-20220319154605427" style="zoom: 80%;" />
 
     
 
@@ -115,16 +115,20 @@
   * **<u>Static Serving:</u>** Making predictions before hand. 
 
     * We use a cache, In this case, instead of faster memory, we'll use a table. Static serving then computes the label ahead of time and serves by looking it up in the table.
-    * <img src="images/image-20220319163641608.png" alt="image-20220319163641608" style="zoom: 67%;" />
+
+      <img src="images/image-20220319163641608.png" alt="image-20220319163641608" style="zoom: 67%;" />
+
     * These keys in step 2 will allow you to join your request to prediction at serving time.
+
     * And third, you write the predictions to a data warehouse like BigQuery, and create an API to read from it.
+
     * Overall these are the steps required for static serving in GCP![image-20220319163849726](images/image-20220319163849726.png)
 
   * **<u>Dynamic serving:</u>**  The label is generated on demand.
 
   * There's a space-time trade-off between the two.
 
-    <img src="images/image-20220319155758010.png" alt="image-20220319155758010" style="zoom:50%;" />
+    <img src="images/image-20220319155758010.png" alt="image-20220319155758010" style="zoom: 80%;" />
 
 * Decision Criteria 2: Peakedness and Cardinality
 
@@ -134,7 +138,7 @@
     * For example, a model that predicts the next word based on the current word, which you might find in your mobile phone keyboard app would be highly peaked because a small number of words account for the majority of words used.
     * In contrast, a model that predicted quarterly revenue for all sales verticals in order to populate a report would be right on the same verticals and with the same frequently for each. And so, it would be very flat.
 
-  * **<u>Cardinality:</u>**  Am I expected to make repeated predictions for only a limited records with limited features. i.e. the overall possible size of the input space.
+  * **<u>Cardinality:</u>**  At the time of prediction, is my possible (feature space * number of requests) set  large or small ? or in other words am I expected to make repeated predictions for only a limited records with limited features. i.e. the overall possible size of the input space.
 
     * Cardinality refers to the number of values in a set. In our case, the set is composed of all the possible things we might have to make predictions for.
     * So, a model predicting sales revenue given organization division number would have fairly low cardinality. Because we're making predictions for only 4-5 divisions at a time.
@@ -166,7 +170,7 @@
 
 * Vertex AI brings together the Google Cloud services for building ML under one unified user interface and application programming interface, or API.
 
-  <img src="images/image-20220319172211747.png" alt="image-20220319172211747" style="zoom:50%;" />
+  <img src="images/image-20220319172211747.png" alt="image-20220319172211747" style="zoom: 80%;" />
 
 * Datasets:
 
@@ -179,7 +183,7 @@
 * Training:
 
   * With Vertex AI, you can train and compare models using AutoML or custom code training, with all models stored in one central model repository.
-  * **<u>Training pipelines</u>**: are the primary model training workflow in Vertex AI, which can use training pipelines to create 
+  * **<u>Training pipelines</u>**: (Read best practices to understand how Vertex AI Pipelines integrate with TFX pipelines and Kubeflow Pipelines and when to use either) are the primary model training workflow in Vertex AI, which can use training pipelines to create 
     * an AutoML-trained model or 
     * a custom-trained model.
       * orchestrate custom training jobs and hyperparameter tuning 
@@ -223,7 +227,7 @@
 
    * Best Practices:
 
-     <img src="images/image-20220319181318630.png" alt="image-20220319181318630" style="zoom:67%;" />
+     <img src="images/image-20220319181318630.png" alt="image-20220319181318630" style="zoom: 80%;" />
 
      * If the mean or the variance has changed substantially, then you can analyze this new segment of the input space, to see if the relationships learned still hold.
      * Check whether the models residuals, that is the difference between its predictions and the labels, has changed as a function of your inputs. If, for example, you used to have small errors at one slice of the input and large in another, and now its switched, this could be evidence of a change in the relationship.
@@ -231,16 +235,19 @@
 
 ### Adapting to data lab
 
+* NOTE: Data Lab is sunsetted. Use Verted AI Workbench in its place.
+
 * Scenario 1: Code sprint to increase model performance by 5%
 
   * **<u>Ablation analysis</u>**, where the value of an individual feature is computed by comparing it to a model trained without it.
-  * <img src="images/image-20220319181823194.png" alt="image-20220319181823194" style="zoom:67%;" />
+
+    <img src="images/image-20220319181823194.png" alt="image-20220319181823194" style="zoom: 80%;" />
 
 * Scenario 2: Found new data source related to label The problem is that its in a unique format and theres no parser written in Python, which is what the codebase is composed of.
 
   * Code  smell: 
 
-    <img src="images/image-20220319182138880.png" alt="image-20220319182138880" style="zoom:67%;" />
+    <img src="images/image-20220319182138880.png" alt="image-20220319182138880" style="zoom: 80%;" />
 
 ###  Right and wrong decisions
 
@@ -250,7 +257,7 @@
 
     <img src="images/image-20220319182757606.png" alt="image-20220319182757606" style="zoom: 50%;" />
 
-  * **<u>Data leakage:</u>**
+  * **<u>Data leakage:</u>** For example, when we're performing normalization operation while training, the mean/sd/min/max values should be calculated only AFTER the initial data has been split into training,validation and test sets. If you calculate the mean/sd/min/max before the data split then it means you're letting the mean of the test and validation dataset affect your training and thus you have apriori knowledge of the test data.
 
 ###  System failure
 
@@ -263,30 +270,30 @@
 
 * **<u>Concept drift occurs when the distribution of our observations shifts over time, or that the joint probability distribution changes.</u>**
 
-* <img src="images/image-20220319185946763.png" alt="image-20220319185946763" style="zoom:80%;" />
+  <img src="images/image-20220319185946763.png" alt="image-20220319185946763" style="zoom:80%;" />
 
-* <img src="images/image-20220319190021427.png" alt="image-20220319190021427" style="zoom:80%;" />
+  <img src="images/image-20220319190021427.png" alt="image-20220319190021427" style="zoom:80%;" />
 
 * If the data is changing, or if the relationship between the features and the label is changing, this is going to cause issues with our model.
 
 * There are 4 types of drifts:
 
-  <img src="images/image-20220319190135606.png" alt="image-20220319190135606" style="zoom:80%;" />
+  <img src="images/image-20220319190135606.png" alt="image-20220319190135606"  />
 
 Why do machine learning models lose their predictive power over time? 
 
-* ![image-20220319184210749](images/image-20220319184210749.png)
+* <img src="images/image-20220319184210749.png" alt="image-20220319184210749" style="zoom:80%;" />
 
 * Drift is the change in an entity with respect to a baseline. In the case of production ML models, this is the change between the real-time production data and a baseline data set, likely the training set, that is representative of the task the model is intended to perform.
 
-* 
+  
 
 * **<u>Types of drifts:</u>**
 
-  <img src="images/image-20220319184822971.png" alt="image-20220319184822971" style="zoom:67%;" />
+  <img src="images/image-20220319184822971.png" alt="image-20220319184822971" style="zoom: 80%;" />
 
   * **<u>Data Drift</u>** or change in probability of X P(X) is a shift in the models input data distribution. For example, incomes of all applicants increase by 5%, but the economic fundamentals are the same. 
-    * Data drift, feature drift, population, or covariate shift are all names to describe changes in the data distribution of the inputs.
+    * **<u>Data drift, feature drift, population, or covariate shift</u>** are all names to describe changes in the data distribution of the inputs.
   * **<u>Concept drift</u>**, or change in probability of Y given X, is a shift in the actual relationship between the model inputs and the output.
     *  An example of concept drift is when macroeconomic factors make lending riskier, and there is a higher standard to be eligible for a loan. In this case, an income level that was earlier considered creditworthy is no longer creditworthy. 
     * concept drift occurs when there is a change in the relationship between the input feature and the label, or target.
@@ -333,8 +340,6 @@ Why do machine learning models lose their predictive power over time?
 
 * **<u>Training Service Skew</u>**: 
 
-  * 
-
   * [Use the mean and sd calculated on entire dataset to normalize/standardize new data during prediciton](https://cloud.google.com/architecture/data-preprocessing-for-ml-with-tf-transform-pt1#preprocessing_granularity)
 
   * Maintain the values for full-pass transforms operations as mentioned in the above article.
@@ -347,9 +352,9 @@ Why do machine learning models lose their predictive power over time?
 
   * Training-serving skew can also occur based on your data distribution in your training, validation, and testing data splits.
 
-  * <img src="images/image-20220319191851144.png" alt="image-20220319191851144" style="zoom: 50%;" /><img src="images/image-20220319192022273.png" alt="image-20220319192022273" style="zoom:50%;" />
+  * <img src="images/image-20220319191851144.png" alt="image-20220319191851144" style="zoom: 80%;" /><img src="images/image-20220319192022273.png" alt="image-20220319192022273" style="zoom: 80%;" />
 
-  * In Summary: <img src="images/image-20220319192120727.png" alt="image-20220319192120727" style="zoom:50%;" /><img src="images/image-20220319192136766.png" alt="image-20220319192136766" style="zoom:50%;" />
+  * In Summary: <img src="images/image-20220319192120727.png" alt="image-20220319192120727" style="zoom: 80%;" /><img src="images/image-20220319192136766.png" alt="image-20220319192136766" style="zoom: 80%;" />
 
 
 ###  Components of TensorFlow data validation
@@ -368,11 +373,12 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
    * And if it is categorical then what are the valid values?
    * It also comes with a visualization tool to review the inferred schema and fix any issues.
    * <img src="images/image-20220319193017453.png" alt="image-20220319193017453" style="zoom:80%;" />
-     * "type" indicates the feature datatype, "presence" indicates whether the feature must be present in 100% of examples or not, so whether its required or optional.
+     * "type" indicates the feature datatype,
+     * "presence" indicates whether the feature must be present in 100% of examples or not, so whether its required or optional.
      * "Valency" indicates the number of values required per training example.
      * "Domain" and "Values" indicates the feature domain and its values.
      * In the case of categorical features, single indicates that each training example must have exactly one category for the feature.
-
+   
 3. **<u>The Example Validator component:</u>** The ExampleValidator pipeline component identifies anomalies in training and serving data.
    * The ExampleValidator pipeline component identifies any anomalies in the example data by comparing data statistics computed by the StatisticsGen pipeline component against a schema.
    * It takes the inputs and looks for problems in the data, like missing values, and reports any anomalies.
@@ -382,6 +388,8 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
   * Data validation checks include identifying feature correlations, checking for missing values, and identifying class imbalances.
 
 ###  Mitigating training-serving skews:
+
+* Check the best practices document for how to do this. (Notes: its done using by using tf.DataTranform)
 
 * Training-serving skew refers to differences caused by one of three things: 
 
@@ -427,18 +435,18 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
 
   * Input/output, which is how fast you can get data into the model for each training step.
     * Your ML training will be IO-bound if the number of inputs is large, heterogenous, requiring parsing, or if the model is so small that the compute requirements are trivial. This also tends to be the case if the input data is on a storage system with very low throughput.
-    * If you're IO-bound, look at storing the data more efficiently on a storage system with higher throughput, or parallelizing the reads. Although it's not ideal, you might also consider reducing the batch size so that you're reading less data in each step. 
+    * **<u>If you're IO-bound, look at storing the data more efficiently on a storage system with higher throughput, or parallelizing the reads. Although it's not ideal, you might also consider reducing the batch size so that you're reading less data in each step.</u>** 
   * the CPU, which is how fast you can compute the gradient in each training step.
     * Your ML training will be CPU-bound if the IO is simple, but the model involves lots of expensive computations. You will also encounter this situation if you're running a model on underpowered hardware.
     * Solutions:
-      * If you are CPU-bound, see if you can run the training on a faster accelerator. GPUs keep getting faster, so move to a newer generation processor. and if you're using Google Cloud, you also have the option of running on TPUs.
-      * Even if it's not ideal, you might consider using a simpler model, a less computationally expensive activation function or simply just train for fewer steps.
+      * <u>**If you are CPU-bound, see if you can run the training on a faster accelerator. GPUs keep getting faster, so move to a newer generation processor. and if you're using Google Cloud, you also have the option of running on TPUs.**</u>
+      * <u>**Even if it's not ideal, you might consider using a simpler model, a less computationally expensive activation function or simply just train for fewer steps.**</u>
   * Memory-- how many weights can you hold in memory so that you can do the matrix multiplications in memory? Or do you use the GPU or TPU.
     * Your ML training might be memory-bound if the number of inputs is really large or if the model is complex and has lots of free parameters. You'll also face memory limitations if your accelerator doesn't have enough memory.
     * Solution:
-      * If you are memory-bound, see if you can add more memory to the individual workers. 
-      * Again, this may not be ideal, but you could also consider using fewer layers in your model. 
-      * Reducing the batch size can also help with memory-bound ML systems.
+      * **<u>If you are memory-bound, see if you can add more memory to the individual workers.</u>** 
+      * **<u>Again, this may not be ideal, but you could also consider using fewer layers in your model.</u>** 
+      * **<u>Reducing the batch size can also help with memory-bound ML systems.</u>**
 
 ###  Predictions
 
@@ -470,7 +478,7 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
 
 * What is distributed training?
 
-  * Simply stated, distributed training distributes training workloads across multiple mini-processors, or worker nodes. These worker nodes work in parallel to accelerate the training process. Their parallelism can be achieved via two types of distributed training architecture:
+  * Simply stated, distributed training distributes training workloads across multiple mini-processors, or worker nodes. These worker nodes work in parallel to accelerate the training process. Their parallelism can be achieved via two types of distributed training architecture: Data parallelism and Model Parallelism
 
   1. **<u>Data parallelism (most common):</u>** In data parallelism, you run the same model and computation on every device, but train each of them using different training data samples.
 
@@ -480,7 +488,7 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
 
      * The updated model is then used in the next round of computation.
 
-     * Data parallelism is model-agnostic, making it the most widely used paradigm for parallelizing neural network training.
+     * <u>**Data parallelism is model-agnostic, making it the most widely used paradigm for parallelizing neural network training.**</u>
 
      * There are currently two approaches used to update the model using gradients from various devices, 
        * **<u>Synchronous Training</u>**: In synchronous training, all of the devices train their local model using different parts of data from a single, large mini-batch. 
@@ -499,20 +507,20 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
            * It then sends the gradients back to the parameter server, which then updates its copy of the parameters with those gradients.
            * Each worker does this independently.
            * This allows it to scale well to a large number of workers, where training workers might be preempted by higher priority production jobs, or a machine may go down for maintenance, or where there is asymmetry between the workers. This doesn't hurt the scaling, because workers are not waiting for each other.
-           * The downside of this approach, however, is that workers can get out of sync. They compute parameter updates based on stale values, and this can delay convergence.
+           * **<u>The downside of this approach, however, is that workers can get out of sync. They compute parameter updates based on stale values, and this can delay convergence</u>**.
 
      * Which approach to choose between the asynchronous parameter server approach and the synchronous Allreduce approach?
 
        <img src="images/image-20220320003059068.png" alt="image-20220320003059068" style="zoom:67%;" />
 
        * Choose Asynchonouse for 
-         * Sparse models as it shards the model across parameter servers, and workers only need to fetch the part they need for each step.
+         * **<u>Sparse models</u>** as it shards the model across parameter servers, and workers only need to fetch the part they need for each step.
          * For dense models, the parameter server transfers the whole model each step, and this can create a lot of network pressure.
-       * The synchronous Allreduce approach should be considered for dense models which contain many features and thus consume more memory.
+       * **<u>The synchronous Allreduce approach should be considered for dense models which contain many features and thus consume more memory.</u>**
          * In this approach, all machines share the load of storing and maintaining the global parameters.
          * This makes it the best option for dense models, like BERT, Bidirectional Encoder Representations from Transformers.
 
-  2. Model Parallelism: When a model is too big to fit on one device's memory, you can divide it into smaller parts on multiple devices and then compute over the same training samples.
+  2. **<u>Model Parallelism</u>**: When a model is too big to fit on one device's memory, you can divide it into smaller parts on multiple devices and then compute over the same training samples.
 
      <img src="images/image-20220320003950278.png" alt="image-20220320003950278" style="zoom:67%;" />
 
@@ -520,14 +528,14 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
      * Think of model parallelism as simply multiple program, same data. Model parallelism splits the weights of the net equally among the threads. And all threads work on a single mini-batch.
      * Here, the generated output after each layer needs to be synchronized, i.e. stacked, to provide the input to the next layer.
      * In this approach, each GPU has different parameters and computation of different parts of a model. In other words, multiple GPUs do not need to synchronize the values of the parameters.
-     * Model parallelism needs special care when assigning different layers to different GPUs, which is more complicated than data parallelism.
-     * The gradients obtained from each model and each GPU are accumulated after a backward process, and the parameters are synchronized and updated.
+     * **<u>Model parallelism needs special care when assigning different layers to different GPUs, which is more complicated than data parallelism.</u>**
+     * **<u>The gradients obtained from each model and each GPU are accumulated after a backward process, and the parameters are synchronized and updated.</u>**
 
-* However, a hybrid of the data and model parallelism approaches is sometimes used together in the same architecture.
+* <u>**However, a hybrid of the data and model parallelism approaches is sometimes used together in the same architecture.**</u>
 
 ###  TensorFlow distributed training strategies
 
-* **<u>tf.distribute.Strategy</u>**: It is a TensorFlow API to distribute training across multiple GPUs, multiple machines, or TPUs. There are four TensorFlow distributed training strategies that support data parallelism.
+* **<u>tf.distribute.Strategy</u>**: It is a TensorFlow API to distribute training across multiple GPUs, multiple machines, or TPUs. **<u>There are 4 TensorFlow distributed training strategies that support data parallelism.</u>**
 
 1. **<u>Mirrored Strategy:</u>** You can use mirrored strategy when you have a **<u>single machine with multiple GPU devices.</u>**
 
@@ -544,7 +552,7 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
    * Step 7 <img src="images/image-20220320010844277.png" alt="image-20220320010844277" style="zoom:67%;" />
    * Summary: <img src="images/image-20220320010952023.png" alt="image-20220320010952023" style="zoom:50%;" />
 
-2. <u>**Multi-Worker Mirrored Strategy: **</u>It implements synchronous distributed training across multiple workers, each with potentially multiple GPUs.
+2. <u>**Multi-Worker Mirrored Strategy: **</u>It implements synchronous distributed training across **<u>multiple workers</u>**, each with potentially multiple GPUs.
 
    * Similar to mirrored strategy, it creates copies of all variables in the model on each device across all workers.
 
@@ -567,15 +575,15 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
      * Step 2 is to wrap the creation of the model parameters within the Scope of the strategy. This is crucial, because it tells mirrored strategy which variables to mirror across the GPU devices.
      * Step 3, the final step is to scale the batch size by the number of replicas in the cluster.
 
-   * The main difference when moving from synchronous data parallelism on one machine to many is that the gradients at the end of each step now need to be synchronized across all GPUs in the machine and across all machines in the cluster. This additional step of synchronizing across the machines increases the overhead of distribution.
+   * **<u>The main difference when moving from synchronous data parallelism on one machine to many is that the gradients at the end of each step now need to be synchronized across all GPUs in the machine and across all machines in the cluster. This additional step of synchronizing across the machines increases the overhead of distribution.</u>**
 
-   * With multi-worker mirrored strategy, the data needs to be sharded, meaning that each worker is assigned a subset of the entire dataset.
+   * **<u>With multi-worker mirrored strategy, the data needs to be sharded, meaning that each worker is assigned a subset of the entire dataset.</u>**
 
-   * If autosharding is turned off, each replica processes every example in the dataset, which is not recommended. Therefore, at each step, a global batch size of non-overlapping dataset elements will be processed by each worker. This sharding happens automatically with tf.data.experimental.
+   * **<u>If autosharding is turned off, each replica processes every example in the dataset, which is not recommended.</u>** Therefore, at each step, a global batch size of non-overlapping dataset elements will be processed by each worker. This sharding happens automatically with tf.data.experimental.
 
-     <img src="images/image-20220320012148700.png" alt="image-20220320012148700" style="zoom:67%;" />
+     <img src="images/image-20220320012148700.png" alt="image-20220320012148700" style="zoom: 80%;" />
 
-     <img src="images/image-20220320012215794.png" alt="image-20220320012215794" style="zoom:67%;" />
+     <img src="images/image-20220320012215794.png" alt="image-20220320012215794" style="zoom: 80%;" />
 
      * Saving the model is slightly more complicated in the multi-worker case, because there needs to be different destinations for each worker. The chief worker will save to the desired model directory, while the other workers will save the model to temporary directories
 
@@ -589,9 +597,9 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
 
    * Example:
 
-     * Step1 Base Code: <img src="images/image-20220320012706386.png" alt="image-20220320012706386" style="zoom:50%;" />
+     * Step1 Base Code: <img src="images/image-20220320012706386.png" alt="image-20220320012706386" style="zoom: 80%;" />
 
-     * Step 2 : Distribution strategy.<img src="images/image-20220320012728372.png" alt="image-20220320012728372" style="zoom:67%;" />
+     * Step 2 : Distribution strategy.<img src="images/image-20220320012728372.png" alt="image-20220320012728372" style="zoom: 80%;" />
 
        
 
@@ -608,7 +616,7 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
      <img src="images/image-20220320013045182.png" alt="image-20220320013045182" style="zoom: 80%;" />
 
    * Note that you will need to parse in the ClusterResolver argument, and if training with AI platform, this is just a simple TFConfigClusterResolver.
-   * When using parameter server strategy, it is recommended that you shuffle and repeat your dataset and parse in the steps per epoch argument to model.fit.
+   * **<u>When using parameter server strategy, it is recommended that you shuffle and repeat your dataset and parse in the steps per epoch argument to model.fit.</u>**
 
 ###   Distributed Training with Keras 
 
@@ -632,7 +640,7 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
 
     1. Using a deployed model, which is REST or HTTP API for streaming pipelines:
 
-    2. Cloud ML Engine batch prediction jobs for batch pipelines
+    2. Cloud ML Engine (old name for Vertex AI) batch prediction jobs for batch pipelines
 
     3. Cloud Dataflow direct-model prediction, which can be used for both batch and streaming pipelines: 
 
@@ -646,22 +654,29 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
 
        * It then does some processing and writes it out to the same or a different format.
 
-       * The processing carried on by Cloud Dataflow typically enriches the data with the predictions of an ML model 
+       * The processing carried on by Cloud Dataflow typically enriches the data with the predictions of an ML model either by using 
 
-       * Either by using a TensorFlow SavedModel, and loading it directly into the Dataflow pipeline from Cloud Storage, or by using TensorFlow Serving, and accessing it via an HTTP endpoint as a microservice either from Cloud ML Engine, as shown, or using Kubeflow running on a Kubernetes engine.
+         * a TensorFlow SavedModel, and loading it directly into the Dataflow pipeline from Cloud Storage, 
+         * or by using TensorFlow Serving, and accessing it via an HTTP endpoint as a microservice either from Cloud ML Engine, as shown, 
+         * or using Kubeflow running on a Kubernetes engine.
 
     4. So which of the 3 is the best?
-
+  
        * <img src="images/image-20220320014623733.png" alt="image-20220320014623733" style="zoom:80%;" />
-       * For batch prediction CMLE is the fastest
+       * **<u>For batch prediction CMLE is the fastest</u>**
        * But if you want maintainability, the second and third options reverse.
 
-  * **<u>Streaming Pipeline</u>**:
-
+  * **<u>Streaming Pipeline</u>**: (**<u>TF Saved Model is best for streaming.</u>**)
+  
     * <img src="images/image-20220320014730154.png" alt="image-20220320014730154" style="zoom:80%;" />
+    
     * <img src="images/image-20220320014742525.png" alt="image-20220320014742525" style="zoom:80%;" />
+    
+      
 
 ##  Building Hybrid ML Systems
+
+* To Train ML Models outside the cloud  Kubeflow and TensorFlow Lite are good to know about to have in your back pocket when such situations arise.
 
 ###  Introduction
 
@@ -686,7 +701,7 @@ In order to build hybrid machine learning systems that work well both on-premise
 ###  Kubeflow
 
 * Why Kubeflow?
-  * kubeflow is an open source machine learning platform designed to enable the use of machine learning pipelines to orchestrate complicated workflows running on kubernetes. kubeflow helps build hybrid cloud machine learning models. kubeflow is the machine learning toolkit for kubernetes
+  * **<u>kubeflow is an open source machine learning platform designed to enable the use of machine learning pipelines to orchestrate complicated workflows running on kubernetes.</u>** kubeflow helps build hybrid cloud machine learning models. kubeflow is the machine learning toolkit for kubernetes
   * Using kubernetes you can orchestrate containers that run either on-premises or in the cloud and that can be any cloud.
   * using kubernetes allows for speed and the ability to minimize infrastructure management needs all while being able to move or burst to google cloud.
   * it makes deploying machine learning workflows on kubernetes simple portable and scalable 
@@ -729,9 +744,9 @@ In order to build hybrid machine learning systems that work well both on-premise
 
 * Training on device?
 
-  * Federated Learning: Even though we've talked primarily about prediction on mobile, a new frontier is confederated learning.
+  * **<u>Federated Learning</u>**: Even though we've talked primarily about prediction on mobile, a new frontier is called federated learning.
   * The idea is you continuously train the model on the device, and then you combine the model updates from a federation of user devices to update the overall model.
-  * The goal is for each user to get their customized experience (because there's model training happening on the device) but still retain privacy because it's the overall model update that goes back to the cloud.
+  * **<u>The goal is for each user to get their customized experience (because there's model training happening on the device) but still retain privacy because it's the overall model update that goes back to the cloud.</u>**
 
 ###  Optimizing TensorFlow for mobile
 
@@ -751,10 +766,10 @@ In order to build hybrid machine learning systems that work well both on-premise
 
 Kubeflow Summary:
 
-* <img src="images/image-20220320120855000.png" alt="image-20220320120855000" style="zoom:50%;" />
+* <img src="images/image-20220320120855000.png" alt="image-20220320120855000" style="zoom: 80%;" />
 * Kubeflow gives you composability, portability, and scalability, while preserving the ability to run everywhere.
 * Specifically, Kubeflow offers portability and composability between your on-premises environment and Cloud ML Engine.
-* The tradeoff is that Kubeflow is not serverless. You will have to do cluster management. Still, retaining the ability to move to cloud and serverless at some point in the future, all for some fraction of your workload, provides flexibility.
+* The tradeoff is that **<u>Kubeflow is not serverless</u>**. You will have to do cluster management. Still, retaining the ability to move to cloud and serverless at some point in the future, all for some fraction of your workload, provides flexibility.
 
 Tensorflow Lite:
 
@@ -764,7 +779,7 @@ Tensorflow Lite:
 * However, you sacrifice maintainability and portability since you cannot resume training from that model graph.
 * Another compromise you might make is to use a less-accurate model on the device. Perhaps you quantize the nodes, or you use a smaller model.
 
-So if business and real-world considerations require you to be able to train or serve machine learning models outside a cloud environment, it's good to know that you have these options. So Kubeflow and TensorFlow Lite are good to know about to have in your back pocket when such situations arise.
+**<u>So if business and real-world considerations require you to be able to train or serve machine learning models outside a cloud environment, it's good to know that you have these options. So Kubeflow and TensorFlow Lite are good to know about to have in your back pocket when such situations arise.</u>**
 
 ##  Summary
 

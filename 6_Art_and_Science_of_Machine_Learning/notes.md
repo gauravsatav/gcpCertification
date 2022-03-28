@@ -39,7 +39,7 @@
 
     * new loss = loss function + complexity (which is measured by L1 or L2 Norm)
 
-    <img src="images/image-20220316124907918.png" alt="image-20220316124907918" style="zoom: 50%;" /><img src="images/image-20220316125248217.png" alt="image-20220316125248217" style="zoom:50%;" />
+    <img src="images/image-20220316124907918.png" alt="image-20220316124907918" style="zoom: 80%;" /><img src="images/image-20220316125248217.png" alt="image-20220316125248217" style="zoom: 80%;" />
 
   * The **<u>regularization rate *lambda*</u>** which in above image can be seen as the coefficient of the complexity, is a parameter we define to control how much emphasis we want to put on having a simpler model.
 
@@ -84,17 +84,15 @@
 
 * <img src="images/image-20220316132723273.png" alt="image-20220316132723273" style="zoom:80%;" />
 
-* <img src="images/image-20220316145836585.png" alt="image-20220316145836585" style="zoom:80%;" />
+* Cloud ML Engine is old name for AI Platform which in turn is old name of Vertex AI<img src="images/image-20220316145836585.png" alt="image-20220316145836585" style="zoom:80%;" />
 
-* <img src="images/image-20220316150059854.png" alt="image-20220316150059854" style="zoom:50%;" />
+* <img src="images/image-20220316150059854.png" alt="image-20220316150059854" style="zoom: 80%;" />
 
 * Ensure that output have unique names
 
-  <img src="images/image-20220316150123750.png" alt="image-20220316150123750" style="zoom:50%;" />
+  <img src="images/image-20220316150123750.png" alt="image-20220316150123750" style="zoom: 80%;" />
 
-* Start training and write the .yml file as shown <img src="images/image-20220316150143391.png" alt="image-20220316150143391" style="zoom:50%;" />
-
-* 
+* Start training and write the .yml file as shown <img src="images/image-20220316150143391.png" alt="image-20220316150143391" style="zoom: 80%;" />
 
 ###  Exporting data from BigQuery to Cloud Storage
 
@@ -111,23 +109,24 @@
 ###  Regularization for sparsity
 
 * Whenever we are doing regularization techniques we are adding a penalty term to the loss function or in general the objective function so that it doesn't over optimize our decision variables or parameter weights 
+
 * We choose the penalty terms based on prior knowledge function state etc 
 
 * Limitation of L2 regularization is that it does not reduce the weights to 0.
 
-  <img src="images/image-20220316151349416.png" alt="image-20220316151349416" style="zoom: 67%;" />
+  <img src="images/image-20220316151349416.png" alt="image-20220316151349416" style="zoom: 80%;" />
 
 * There are a lot of features, especially after feature crosses.
 
-* <img src="images/image-20220316152120860.png" alt="image-20220316152120860" style="zoom:80%;" />
+  <img src="images/image-20220316152120860.png" alt="image-20220316152120860" style="zoom:80%;" />
 
 * <img src="images/image-20220316152341026.png" alt="image-20220316152341026" style="zoom:50%;" /><img src="images/image-20220316152405074.png" alt="image-20220316152405074" style="zoom: 67%;" />
 
-*  there are an infinite number of norms which are generalized by the p norm<img src="images/image-20220316152753147.png" alt="image-20220316152753147" style="zoom:67%;" />
+*  there are an infinite number of norms which are generalized by the p norm<img src="images/image-20220316152753147.png" alt="image-20220316152753147" style="zoom: 80%;" />
 
 * L1 vs L2 
 
-  * In practice though usually the l2 norm provides more generalizable models than the l1 norm however we will end up with much more complex heavy models if we use l2 instead of l1.
+  * In practice though usually the **<u>l2 norm provides more generalizable models than the l1 norm</u>** however we will end up with much more complex heavy models if we use l2 instead of l1.
   * this happens because often features have high correlation with each other and l1 regularization will choose one of them and throw the other away whereas l2 regularization will keep both features and keep their weight magnitudes small.
   * so with L1 you can end up with a smaller model but it may be less predictive.
 
@@ -135,7 +134,7 @@
 
   * <img src="images/image-20220316153827092.png" alt="image-20220316153827092" style="zoom:80%;" />
 
-  * The elastic net is just a linear combination of the l1 and l2 regulation penalties, this way you get both
+  * The **<u>elastic net</u>** is just a linear combination of the l1 and l2 regulation penalties, this way you get both
 
     * the benefits of sparsity for really poor predictive features 
     * while also keeping decent and great features with smaller weights to provide good generalization 
@@ -154,6 +153,8 @@
 * <img src="images/image-20220316155108585.png" alt="image-20220316155108585" style="zoom:80%;" />
 
 ###  Logistic Regression
+
+* Logloss (cross-entropy) = 0 means perfect prediction. The closer the cross-entropy to 0, the better the model. The cross-entropy between the model predictions and the target values. This ranges from zero to infinity, where a lower value indicates a higher-quality model.
 
 * Since we cannot use RMSE to find a binary outcome, because it might give us any real value (and not just between 0-1) we make use of the sigmoid function
 
@@ -179,7 +180,7 @@
   * Difference between MSE and Logloss (cross-entropy):
     * errors where the output is relatively close to the label : In cross-entropy there is less emphasis on errors where the output is relatively close to the label which is almost linear compared to quadratic in MSE.
     * however also unlike mean squared error cross entropy grows exponentially when the prediction is close to the opposite the label 
-    * In other words there is a very high penalty when the model not only gets it wrong but does so with very high confidence
+    * **<u>In other words there is a very high penalty when the model not only gets it wrong but does so with very high confidence</u>**
     * furthermore the derivative of mean squared error could cause problems with training as we push the output closer and closer to 0 or 1 then the gradient which is the output times 1 minus the output becomes smaller and smaller and changes the weights less and less training could completely stall however
     * <img src="images/image-20220316164157650.png" alt="image-20220316164157650" style="zoom:50%;" />
     * 
@@ -200,7 +201,7 @@
 
 * <img src="images/image-20220316163021778.png" alt="image-20220316163021778" style="zoom:67%;" />
 
-* When the outcome is not equally likely, we use different metric other than probability. Therefore, we use other metrics like Precision, recall, ROC-AUC
+* When the outcome is not equally likely, we use different metric other than probability. Therefore, we use other metrics like Precision, recall, ROC-AUC, ROC-PR etc.
 
 * 
 
@@ -220,7 +221,7 @@
 
 * What is the purpose of many layers?
 
-  * <img src="images/image-20220316170016771.png" alt="image-20220316170016771" style="zoom:50%;" />
+  * <img src="images/image-20220316170016771.png" alt="image-20220316170016771" style="zoom: 80%;" />
   * there can be many layers neurons per layer outputs inputs different types of activation functions etc 
   * each layer i add adds to the complexity of the functions i can create 
   * each subsequent layer is a composition of the previous functions since we are using nonlinear activation functions in my hidden layers i'm creating a stack of data transformations that rotate stretch and squeeze my data
@@ -238,7 +239,7 @@
 
 * Quiz
 
-  * <img src="images/image-20220316170252036.png" alt="image-20220316170252036" style="zoom:50%;" />
+  * <img src="images/image-20220316170252036.png" alt="image-20220316170252036" style="zoom: 80%;" />
   * **<u>if a layer has four neurons then it is an r4 vector space</u>** and if a layer has 500 neurons it is an r500 vector space meaning it has 500 real dimensions
   * **<u>adding a layer doesn't change the dimension</u>** the previous layer and it might not even change the dimension in its layer unless it has a different number of neurons than the previous layer.  what additional layers do add is a greater composition of functions. This is great for combining non-linear functions together to make very convoluted feature maps that are hard for humans to construct but great for computers and allow us to better get our data into a shape that we can learn and gain insights from
   * speaking of insights we receive those through our output layers where during inference those will be the answers to our ml formulated problem if you only want to know the probability of an image being a dog then you can get by with only one output node but if you wanted to know the probability of an image being a cat dog bird or moose then you would need to have a node for each one

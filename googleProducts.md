@@ -1,9 +1,32 @@
 # Google Products
 
 * CloudML Engine -> AI Platform -> Vertex AI
-* BigQuery
+* BigQuery -> Data Warehousing.
 * BigQueryML
 * Cloud Monitoring
+* Cloud Data Loss Prevention (DLP) 
+  *  Automatically discover sensitive data
+  * Classify data across your enterprise
+  * Protect sensitive data as you migrate to the cloud
+  *  [Cloud DLP ](https://cloud.google.com/dlp/docs)enables transformations such as 
+    * <img src="images/image-20220328020928183.png" alt="image-20220328020928183" style="zoom:80%;" />
+
+  * Also keep in mind Federated Learning will help maintain privacy as the training is done on device.
+* Cloud Data Fusion 
+  * Data Lakes. 
+  * Cloud Data Fusion helps users build scalable, distributed data lakes on Google Cloud by integrating data from siloed on-premises platforms. 
+  * Visual point-and-click interface enabling code-free deployment of ETL/ELT data pipelines. 
+  * End-to-end data lineage for root cause and impact analysis
+  * Data Fusion is not SQL syntax ....
+  * Cloud Data Fusion offers [pre-built transformations](https://cloud.google.com/data-fusion/plugins) for both batch and real-time processing.
+
+* Cloud Spanner
+  * Fully managed relational database with unlimited scale, strong consistency.
+  * , [SQL queries](https://cloud.google.com/spanner/docs/query-syntax), and ACID transactions
+
+* App Engine ->  Build highly scalable applications on a fully managed serverless platform.
+* Cloud DataPrep -> Dataprep by Trifacta is an intelligent data service for visually exploring, cleaning, and preparing structured and unstructured data for analysis, reporting, and machine learning. 
+* Cloud Datalab -> Datalab is scheduled to be deprecated on August 11, 2022. [Vertex AI Workbench](https://cloud.google.com/vertex-ai/docs/workbench) provides a notebook-based environment that offers capabilities beyond Datalab. 
 * Tensorboard
 * GKE (Google Kubernetes Engine)
 * Kubeflow
@@ -26,14 +49,18 @@
 * [AutoML](https://cloud.google.com/automl) (note: it’s [now part of Vertex AI](https://cloud.google.com/vertex-ai/docs/beginner/beginners-guide/))
 * Cloud Build
 * Cloud Logging
-*  [Google Data Studio](https://datastudio.google.com/u/0/)
+* [Google Data Studio](https://datastudio.google.com/u/0/)
 * [Vertex AI Model Monitoring](https://cloud.google.com/vertex-ai/docs/model-monitoring/overview)
-*  [Vertex Explainable AI](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
+* [Vertex Explainable AI](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
 * [Cloud Scheduler](https://cloud.google.com/scheduler)
-*  [Cloud Run](https://cloud.google.com/run)
-*  [Cloud Functions](https://cloud.google.com/functions) 
-*  [Cloud Pub/Sub](https://cloud.google.com/pubsub)
+* [Cloud Run](https://cloud.google.com/run)
+* [Cloud Functions](https://cloud.google.com/functions) 
+* [Cloud Pub/Sub](https://cloud.google.com/pubsub)
 * *Cloud Composer*
+* Tensorflow Lite (on edge model deployment)
+  * **<u>Bazel:</u>**You can build a TensorFlow shared object on Android using Android Studio using a continuous integration tool called Bazel.
+  * And for iOS, there is **<u>CocoaPod</u>** integration as well.
+
 
 ## Use recommended tools and products
 

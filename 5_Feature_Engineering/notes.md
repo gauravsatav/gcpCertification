@@ -55,7 +55,7 @@ Some heuristics to differentiate
   * In tensorflow this is called a sparse column you basically say that i want to create a sparse column with the keys and the column name is an employee id and the keys are 9879 for the employee id.
   * <img src="images/image-20220314154444725.png" alt="image-20220314154444725" style="zoom:80%;" />
   * Hashing is used when we don't want to explicitly provide a vocabulary list before hand
-* **<u>MAGIC NUMBERS</u>** : Add new column to indicate if a numeric categorical feature value (example rating from 1-5) is missing .Don't mark it as 0 for missing values, create a separate column called "missing".
+* **<u>MAGIC NUMBERS</u>** : Add new column to indicate if a numeric categorical feature value (example rating from 1-5) is missing .Don't mark it as 0 for missing values, create a separate column called "missing" which is binary and has 1 if value is missing and 0 if not.
 
 ###  ML vs Statistics
 
@@ -84,7 +84,7 @@ Statistics is generally used when data is limited and ML when data is in abundan
 
 * Dataflow can run pipelines written in python and java programming languages
 
-* Beam (Batch and Stream) : is used to implement a data processing pipeline you write your code using the apache beam apis and then deploy the code to cloud dataflow. Example:
+* **<u>Apache Beam</u>** (Batch and Stream) : is used to implement a data processing pipeline you write your code using the apache beam apis and then deploy the code to cloud dataflow. Example:
 
   <img src="images/image-20220314161657074.png" alt="image-20220314161657074" style="zoom:67%;" />
 
@@ -92,19 +92,20 @@ Statistics is generally used when data is limited and ML when data is in abundan
   * then you transform the data, figure out the number of words in each line of text as i will explain shortly this kind of a transformation can be automatically scaled by dataflow to run in parallel 
   * next in your pipeline you can group lines by the number of words using grouping and other aggregation operations you can also filter out values for example to ignore lines with fewer than 10 words 
   * once all the transformation grouping and filtering operations are done the pipeline writes the result to google cloud storage notice that this implementation separates the pipeline definition from the pipeline execution all the steps that you see before call to the p.run method are just defining what the pipeline should do 
-  * the pipeline actually gets executed only when you call the run method one of the coolest things about apache beam is that it supports both batch and streaming data processing using the same pipeline code
+  * the pipeline actually gets executed only when you call the run method 
+  * one of the coolest things about apache beam is that it supports both batch and streaming data processing using the same pipeline code
 
 <img src="images/image-20220314162155668.png" alt="image-20220314162155668" style="zoom:80%;" />
 
-* Source : Where data comes from
+* **<u>Source</u>** : Where data comes from
 
-* Transform : Each Step is called a transform. 
+* **<u>Transform</u>** : Each Step is called a transform. 
 
   * Transform works on a data structure called p collection.
   * Every transform gets a p-collection as input and outputs the result to another p-collection
   * A p-collection does not store all its data in memory. p collection is like a data structure with pointers to where the dataflow cluster stores your data
 
-* sink which is the output of the pipeline
+* **<u>Sink</u>** which is the output of the pipeline
 
 * **<u>Runner :</u>** a runner takes the pipeline code and executes it.
 
@@ -118,11 +119,11 @@ Statistics is generally used when data is limited and ML when data is in abundan
 
     * custom distributed computing platform.
 
-    * <img src="images/image-20220314162752751.png" alt="image-20220314162752751" style="zoom:67%;" />
+    * <img src="images/image-20220314162752751.png" alt="image-20220314162752751" style="zoom: 80%;" />
 
     * Step 4 : Execute pipeline
 
-      <img src="images/image-20220314163316325.png" alt="image-20220314163316325" style="zoom:67%;" />
+      <img src="images/image-20220314163316325.png" alt="image-20220314163316325" style="zoom: 80%;" />
 
       
 
@@ -142,6 +143,8 @@ Cloud data prep lets you use an interactive graphical user interface to better u
 
 <img src="images/image-20220314171920077.png" alt="image-20220314171920077" style="zoom:67%;" />
 
+Note: Datalab is scheduled to be deprecated on August 11, 2022. [Vertex AI Workbench](https://cloud.google.com/vertex-ai/docs/workbench) provides a notebook-based environment that offers capabilities beyond Datalab. 
+
 1. First approach:
 
    <img src="images/image-20220314172045111.png" alt="image-20220314172045111" style="zoom:67%;" /><img src="images/image-20220314172118904.png" alt="image-20220314172118904" style="zoom:67%;" />
@@ -158,43 +161,61 @@ Cloud data prep lets you use an interactive graphical user interface to better u
 
 ###  Introducing Feature Crosses
 
+Feature cross are more relavant in the context of linear/simpler models. Neural Networks don't require explicit feature crossing as it does this internally 
+
 ###  What is a Feature Cross
 
 * Feature cross are a combination of existing features to create new features.
-* Optimizing Linear models is a convex problems, a NN with many layers is a non-convex problem. Convex problems are much simpler to optimize for. Remember that convexity is a property of the hyper-parameter space to have a global minimum. For example a 3d graph of x2 has a definite global minimum at x=0
+* Optimizing Linear models is a convex problems, a NN with many layers is a non-convex problem. Convex problems are much simpler to optimize for. Remember that convexity is a property of the hyper-parameter space to have a global minimum. For example a 3d graph of x^2 has a definite global minimum at x=0
 * feature crosses are a way to bring non-linear inputs to a linear learner
-* Although feature cross offer a simpler model they come at the cost of memorization of the input space.
+* **<u>Although feature cross offer a simpler model they come at the cost of memorization of the input space.</u>**
 * feature crosses allow a linear model to memorize large data sets the idea is you can assign a weight to each feature cross and this way the model learns about combinations of features so even though it's a linear model the actual underlying relationship between inputs and outputs is non-linear
 * <img src="images/image-20220315005246312.png" alt="image-20220315005246312" style="zoom:80%;" />
 * feature crosses allow you to have a simple model but still get non-linearity
-* Feature Crosses only work on categorical features (if you have continueous features, then discritize them first.)
+* **<u>Feature Crosses only work on categorical features (if you have continueous features, then discritize them first.)</u>**
 
 ###  Discretization
 
-* The white lines (which are a combination of x1 and x2) are additional hyperparameters we need to account for in our model.<img src="images/image-20220314233321379.png" alt="image-20220314233321379" style="zoom:50%;" />
+* In the below example, there is no singular line which can act as a decision boundary for separating x1 and x2.
+
+* Therefore before the model becomes linearly sperable buy just one parameter, we need the white lines to be just in the right place. and this transformation (x1-c1) and (x2-c2) where c1 and c2 are additional hyper-parameters we need to account for while in training.
+
+* The white lines (which are a combination of x1 and x2) are additional hyperparameters we need to account for in our model.<img src="images/image-20220314233321379.png" alt="image-20220314233321379" style="zoom: 80%;" />
+
 * In case when we don't shift the axis to the center (i.e. we dont substract a constant from x1-c1 and x2-c2) and let the axis remain where it is, notice that we can still separate the space, only in this case, the product of x1*x2 we will have to separate it by the magnitude of the product (x1 * x2) instead of only the sign. i.e. if x3<threshold 1 and x3> threshold2 then it belongs to blue class. if threshold1 < x3 < threshold2, then it belongs to yellow class. Therefore, we now have 2 decision boundaries.
-* <img src="images/image-20220315000825530.png" alt="image-20220315000825530" style="zoom:50%;" />
+
+* <img src="images/image-20220315000825530.png" alt="image-20220315000825530" style="zoom: 80%;" />
+
 * Basically we were able to make independent predictions for 4 quadrants when we decide to bin by x1 and x2 by (50 percentile/mean/median).
   * Q1: x1 and x2 are small
   * Q2 : x1 is small and x2 is big
   * Q3 : x1 is big x2 is small
   * Q4 : x1 and x2 are big
+  
 * Similarly if we decide to discretize the input space into m bins of x1 and n bins of x2 we will have (m+1)(n+1) quadrants on which we can independently make a decision
-* Therefore before the model becomes linearly sperable buy just one parameter, we need the white lines to be just in the right place. and this transformation (x1-c1) and (x2-c2) where c1 and c2 are additional hyper-parameters we need to account for while in training.
-* The following space can also be discretized.<img src="images/image-20220314233613727.png" alt="image-20220314233613727" style="zoom:50%;" />
-* If we have *m* vertical lines and *n* horizontal lines, then we have *(m+1)(n+1)* discrete regions.
-* Divide the input space into quadrants<img src="images/image-20220314233948869.png" alt="image-20220314233948869" style="zoom:50%;" /> similarly with *(m+1)(n+1)* discrete regions we have independent decision making capability for each quadrant.
 
-* Essentially we get to make a prediction for each of the quadrant. <img src="images/image-20220314234122273.png" alt="image-20220314234122273" style="zoom:50%;" />
-* <img src="images/image-20220314234251241.png" alt="image-20220314234251241" style="zoom:50%;" />
+  
+
+* The following space can also be discretized.<img src="images/image-20220314233613727.png" alt="image-20220314233613727" style="zoom: 80%;" />
+
+* If we have *m* vertical lines and *n* horizontal lines, then we have *(m+1)(n+1)* discrete regions.
+
+* As we did in the earlier case by dividing the input space into quadrants<img src="images/image-20220314233948869.png" alt="image-20220314233948869" style="zoom: 67%;" /> similarly with *(m+1)(n+1)* discrete regions we have independent decision making capability for each quadrant.
+
+* Essentially we get to make a prediction for each of the quadrant. <img src="images/image-20220314234122273.png" alt="image-20220314234122273" style="zoom: 80%;" /><img src="images/image-20220314234251241.png" alt="image-20220314234251241" style="zoom: 80%;" />
+
 * Remember that x1 is a feature with many distinct values (like day of week) and so is x2 (say, public holiday or not) therefore x3 which is defined as x1 * x2 is accounts for all the combinations of day of the week * public holiday pairs.
+
 * So basically in our case the weight of x3 ends up being the ratio of blue to yellow dots in that region of space once we fit it in our linear model
-* you essentially discretize the input space and memorize the training data. For example in the region shown below the model will say its always going to be blue. <img src="images/image-20220315002928480.png" alt="image-20220315002928480" style="zoom:50%;" />
+
+* you essentially discretize the input space and memorize the training data. For example in the region shown below the model will say its always going to be blue. <img src="images/image-20220315002928480.png" alt="image-20220315002928480" style="zoom: 80%;" />
+
 * Although feature cross offer a simpler model they come at the cost of memorization of the input space.
+
 * So when should we use feature cross?
   * When you have large amounts of data (which is not the case with general statistics as compared to ML) and the distribution of data in each grid sell is statistically significant.
-  * Memorization works when you have so much data that for any single grid cell in your input space the distribution of data is statistically significant when that's the case you can memorize essentially just learning the mean for every grid cell 
-  * You can also choose to add more layers instead of using feature crosses
+  * Memorization works when you have so much data that for any single grid cell in your input space the distribution of data is statistically. when that's the case you can memorize essentially just learning the mean for every grid cell 
+  * **<u>Alternatively to feature cross, in you're using a neural network you can also choose to add more layers instead of using feature crosses</u>**
 
 ###  Taxi colors
 
@@ -211,25 +232,32 @@ Cloud data prep lets you use an interactive graphical user interface to better u
 ###  Implementing Feature Crosses
 
 * Feature Crosses only work on categorical features (if you have continueous features, then discritize them first.)<img src="images/image-20220315010331715.png" alt="image-20220315010331715" style="zoom:80%;" />
+
 * Without features crosses we had 24 + 7 input features
+
 * With feature cross we have 24*7 = 168 input features.
-* internally tensorflow uses a sparse representation for both one heart encoding and for feature crosses so it has no problem with this
-* Therefore when feature crossing, the input is very very sparse.
+
+* internally tensorflow uses a sparse representation for both one hot encoding and for feature crosses so it has no problem with this
+
+* Therefore when feature crossing, the input is very sparse.
+
 * Option 3 is correct <img src="images/image-20220315011012698.png" alt="image-20220315011012698" style="zoom:80%;" />
 
 * Feature crossing can allow a model to overfit 
-* <img src="images/image-20220315011615292.png" alt="image-20220315011615292" style="zoom:50%;" />
-* If the weights of the normal features are much more than the weights of the feature crossed feature, then its a good idea to remove it or use L1 regularization (as it removes unused feature) so that the model becomes more general. 
+
+  <img src="images/image-20220315011615292.png" alt="image-20220315011615292" style="zoom:50%;" />
+
+* **<u>If the weights of the normal features are much more than the weights of the feature crossed feature, then its a good idea to remove it or use L1 regularization (as it removes unused feature) so that the model becomes more general.</u>** 
 
 ###  Feature Creation in TensorFlow
 
 * to create feature cross in tf use the `tf.feature_column.crossed_column()` the inputs have to be categorical columns only along with the size of the hash buckets
 
-  <img src="images/image-20220315012207750.png" alt="image-20220315012207750" style="zoom:50%;" />
+  <img src="images/image-20220315012207750.png" alt="image-20220315012207750" style="zoom: 80%;" />
 
 * If we give hash bucket of just 6, then there will be more collision
 
-* <img src="images/image-20220315012401310.png" alt="image-20220315012401310" style="zoom:80%;" /><img src="images/image-20220315012602494.png" alt="image-20220315012602494" style="zoom:50%;" />
+* <img src="images/image-20220315012401310.png" alt="image-20220315012401310" style="zoom:80%;" /><img src="images/image-20220315012602494.png" alt="image-20220315012602494" style="zoom: 80%;" />
 
 * In practice follow the green value in the image above to decide on the number of hash buckets.
 
@@ -244,12 +272,12 @@ Cloud data prep lets you use an interactive graphical user interface to better u
 ### Embedding Feature Crosses
 
 * Instead of OHE features and directly using the feature cross of this in our model we first pass this crossed feature through a dense layer with less number of nodes
-* <img src="images/image-20220315013253313.png" alt="image-20220315013253313" style="zoom: 50%;" /><img src="images/image-20220315013344872.png" alt="image-20220315013344872" style="zoom:67%;" />
+* <img src="images/image-20220315013253313.png" alt="image-20220315013253313" style="zoom: 80%;" /><img src="images/image-20220315013344872.png" alt="image-20220315013344872" style="zoom: 80%;" />
 * Step 1 : from time feature we extract the day and the hour 
-* Step 2 : we feature across them to get x3 in the diagram and as we discussed x3 is essentially one heart encoded into a number of hash buckets 
+* Step 2 : we feature-cross them to get x3 in the diagram and as we discussed x3 is essentially one hot encoded into a number of hash buckets 
 * Step 3 : now take this and pass it through a dense layer whose weights are trained to predict a number of things about the traffic
 
-<img src="images/image-20220315013948104.png" alt="image-20220315013948104" style="zoom:67%;" />
+<img src="images/image-20220315013948104.png" alt="image-20220315013948104" style="zoom: 80%;" />
 
 * Therefore a similar day hour combinations in terms of traffic tend to be similar and day our combinations that have very different traffic conditions tend to be far apart in the two-dimensional space this is what we mean when we say that the model learns to embed the feature cross in a lower dimensional space
 
@@ -269,17 +297,17 @@ Cloud data prep lets you use an interactive graphical user interface to better u
 
   1. feature pre-processing and feature creation on the fly in tensorflow.
 
-  2. other option is to do the pre-processing of feature creation in cloud data flow.
+  2. other option is to do the pre-processing of feature creation in Cloud Dataflow.
 
   3. tf.transform
 
-     <img src="images/image-20220315021341071.png" alt="image-20220315021341071" style="zoom:50%;" />
+     <img src="images/image-20220315021341071.png" alt="image-20220315021341071" style="zoom: 80%;" />
 
 * <img src="images/image-20220315015646909.png" alt="image-20220315015646909" style="zoom:80%;" />
 
 * When using a feature such as `average number of customer who looked at a product in the last hour` we can use logs to compute this feature from the past and use streaming data to do it at real time during prediction
 
-  ![image-20220315015738140](images/image-20220315015738140.png)
+  <img src="images/image-20220315015738140.png" alt="image-20220315015738140" style="zoom:80%;" />
 
 ###  Improve Machine Learning model with Feature Engineering
 
@@ -293,6 +321,11 @@ Cloud data prep lets you use an interactive graphical user interface to better u
 
 ## TensorFlow Transform
 
+* Read the best practices section first before reviewing this section. Tensorflow Transform in one of the library from the TFX ecosystem.
+* Apart from being a bridge between the Cloud DataFlow and performing transformation on the fly in tensorflow, it servers a very important function of avoiding training/serving skew. Especially on the values which are calculated using full pass operations like finding mean/sd/min/max.
+* When we perform operations like normalization and scaling at the time of serving the model, the mean/sd/min/max values we use to scale the input must be the same as was used during the training phase.
+* Which is why `tf.transform` is useful as along with actually transforming the data at the time it is created, it also outputs a function which generally is saved by the name `transform_fn` which is a graph. This function is then used during inference to perform all the same operations as we did with training data.
+
 * using tf transform will allow us to carry out feature pre-processing and feature creation efficiently at scale and on streaming data
 
 ###  Introducing TensorFlow Transform
@@ -305,7 +338,7 @@ Remember there are 3 places where you can do preprocessing in Google Cloud
 
 3. tf.transform
 
-   <img src="images/image-20220315021322530.png" alt="image-20220315021322530" style="zoom:50%;" />
+   <img src="images/image-20220315021322530.png" alt="image-20220315021322530" style="zoom: 80%;" />
 
 * tf transform this is a hybrid of the first two approaches with tensorflow transform you are limited to tensorflow methods but then you also get the efficiency of tensorflow you can also use the aggregate of your entire training data set because
 * **<u>tf transform uses data flow during training but only tensorflow during prediction</u>**
@@ -318,24 +351,24 @@ Remember there are 3 places where you can do preprocessing in Google Cloud
 * <img src="images/image-20220315021955335.png" alt="image-20220315021955335" style="zoom:80%;" />
 * TF Transform is a hybrid between them, for example to find the min/max and then scale you need to also have historical data or OHE categorical feature like 'car manufacturer' <img src="images/image-20220315022129719.png" alt="image-20220315022129719" style="zoom:80%;" />
 * Therefore, as seen above there are two stages,
-  * Analyze stage - which is the speciality of beam
+  * Analyze stage - which is the specialty of beam
   * On the fly transform of input data, i.e. transform stage. - which is speciality of tf.
 
 ###  TensorFlow Transform
 
-* <img src="images/image-20220315022741688.png" alt="image-20220315022741688" style="zoom:80%;" /><img src="images/image-20220315022605819.png" alt="image-20220315022605819" style="zoom:50%;" />
+* <img src="images/image-20220315022741688.png" alt="image-20220315022741688" style="zoom:80%;" /><img src="images/image-20220315022605819.png" alt="image-20220315022605819" style="zoom: 80%;" />
 
 ###  Analyze phase
 
 <img src="images/image-20220315022943163.png" alt="image-20220315022943163" style="zoom:80%;" />
 
-<img src="images/image-20220315023118396.png" alt="image-20220315023118396" style="zoom:67%;" />
+<img src="images/image-20220315023118396.png" alt="image-20220315023118396" style="zoom: 80%;" />
 
-<img src="images/image-20220315023159006.png" alt="image-20220315023159006" style="zoom:67%;" />
+<img src="images/image-20220315023159006.png" alt="image-20220315023159006" style="zoom: 80%;" />
 
 ###  Transform phase
 
-<img src="images/image-20220315023256299.png" alt="image-20220315023256299" style="zoom:67%;" />
+<img src="images/image-20220315023256299.png" alt="image-20220315023256299" style="zoom: 80%;" />
 
 <img src="images/image-20220315023455293.png" alt="image-20220315023455293" style="zoom:80%;" />
 
