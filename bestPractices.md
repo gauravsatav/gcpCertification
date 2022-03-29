@@ -12,12 +12,14 @@ https://cloud.google.com/architecture/ml-on-gcp-best-practices#use-recommended-t
 ### Before using custom models check if other tools are enough
 
 1. BigQueryML
-
 2. AutoML
 
-   6,11,4,5,
+* Random Advices
+  * You can use of overfitting (driving the training loss to 0) on the training data (memorization) as a measure of if you have enough parameters to learn the complexity of the model. If your model can overfit, then it has enough parameters like layers/neurons per layer etc.
 
-   3,3,2,3
+6,11,4,5,
+
+3,3,2,3
 
 ## 1. [Machine learning environment setup](https://cloud.google.com/architecture/ml-on-gcp-best-practices#machine-learning-environment-setup)
 

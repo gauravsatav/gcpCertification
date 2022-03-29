@@ -45,7 +45,7 @@
 * [Cloud Natural Language API](https://cloud.google.com/natural-language)
 * [Translation API](https://cloud.google.com/translate)
 * [Speech-To-Text](https://cloud.google.com/speech-to-text)
-* [Video AI](https://cloud.google.com/video-intelligence)
+* [Video AI](https://cloud.google.com/video-intelligence) vs Vision AI (vision AI is for images and Video AI for video)
 * [AutoML](https://cloud.google.com/automl) (note: it’s [now part of Vertex AI](https://cloud.google.com/vertex-ai/docs/beginner/beginners-guide/))
 * Cloud Build
 * Cloud Logging

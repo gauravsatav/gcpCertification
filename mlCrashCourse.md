@@ -159,3 +159,5 @@ Questions:
 ![image-20220328182453125](images/image-20220328182453125.png)
 
 [Transforming Your Data: Check Your Understanding  | Data Preparation and Feature Engineering for Machine Learning  | Google Developers](https://developers.google.com/machine-learning/data-prep/transform/check-your-understanding)
+
+[Check Your Understanding  | Introduction to Machine Learning Problem Framing  | Google Developers](https://developers.google.com/machine-learning/problem-framing/check-your-understanding)
