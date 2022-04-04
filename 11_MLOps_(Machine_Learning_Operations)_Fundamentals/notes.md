@@ -169,7 +169,7 @@
 
   * You specify your pipeline by using the kubeflow pipelines sdk or by customizing the tensorflow extended
 
-  * ai pipelines uses the argo workflow engine to run the pipeline and has additional microservices to record metadata handle components i o and schedule pipeline runs.
+  * ai pipelines uses the **<u>argo workflow</u>** engine to run the pipeline and has additional microservices to record metadata handle components i o and schedule pipeline runs.
 
   * pipeline steps are executed as individual isolated pods in a gke google kubernetes engine cluster which enables the kubernetes native experience for the pipeline components 
 

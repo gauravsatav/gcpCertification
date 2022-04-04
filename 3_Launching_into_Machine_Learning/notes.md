@@ -69,7 +69,7 @@
 
         * Z-test and t-test: A t-test is a type of inferential statistic used to determine if there is a significant difference between the means of two groups, which may be related in certain features.
 
-        * ANOVA : Analysis of Variance checks if there are statistically significant differences between more than two groups (groups means different levels/values in a categorical features). It is the extension of the t-test for independent samples to more than two groups.
+        * ANOVA : **<u>Analysis of Variance checks if there are statistically significant differences between more than two groups</u>** (groups means different levels/values in a categorical features). It is the extension of the t-test for independent samples to more than two groups.
 
           * Example : To compare if there is a difference between salary of man and women, assumption is of independence of samples i.e. the person in one group dosen't have anything to do with other.<img src="images/image-20220326130644786.png" alt="image-20220326130644786" style="zoom:50%;" />
 
@@ -112,7 +112,7 @@ UnderSampling
 
 * To avoid data imbalance you have 2 options
   * Downsample Majority Class
-  * Upweight (give more importance)  minority class
+  * Upweight (give more importance)  minority class. So while preparing data for training, more samples from this will be used.
 
 ###  Practical ML
 
@@ -248,7 +248,7 @@ There are two types of problem in supervised learning
 
 #### Kernel Methods (SVM)
 
-* Uses hinge loss function compared to cross-entropy which is used in logistic regression.
+* Uses **<u>hinge loss function</u>** compared to cross-entropy which is used in logistic regression.
 * svms perform better when there is a high number of dimensions and when the predictors nearly certainly predict the response
 * support vector machines which are maximum margin classifiers 
 * core to an svm is a non-linear activation and a sigmoid output for maximum margins
@@ -265,8 +265,8 @@ There are two types of problem in supervised learning
     * Polynomial kernel and 
     * Gaussian radial basis function kernel (Gaussian RBF Kernel) : Input space is mapped to infinite dimensions.
 * When should an svm be used instead of logistic regression?
-  * kernelized svms tend to provide sparser solutions and thus have better scalability
-  * svms perform better when there is a high number of dimensions and when the predictors nearly certainly predict the response
+  * <u>**kernelized svms tend to provide sparser solutions and thus have better scalability**</u>
+  * <u>**svms perform better when there is a high number of dimensions and when the predictors nearly certainly predict the response**</u>
   * <img src="images/image-20220326204137457.png" alt="image-20220326204137457" style="zoom:50%;" />
   * 
 * <img src="images/image-20220309160049860.png" alt="image-20220309160049860" style="zoom:67%;" />

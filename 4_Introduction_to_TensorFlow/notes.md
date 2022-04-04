@@ -61,7 +61,7 @@ Wide and deep architecture.
   * TFRecordDataset format is a simple format for storing a sequence of binary records. It is useful for standardizing input data and optimizing performance.
   * iter Method is invoked on the dataset - which triggers creation and execution of two operations
   * FixedLengthRecordDataset is a dataset object which has fixed-length records from one or more binary files
-  * <img src="images/image-20220314092211750.png" alt="image-20220314092211750" style="zoom:67%;" />
+  * <img src="images/image-20220314092211750.png" alt="image-20220314092211750" style="zoom: 80%;" />
   * Important Methods
     * tf.decode_csv(row,record_defaults,features,label,)
     * tf.data.Dataset.list_files(path).flat_map(tf.data.TextLineDataset).map(parse_row)

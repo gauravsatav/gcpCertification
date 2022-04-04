@@ -229,9 +229,9 @@
 
      <img src="images/image-20220319181318630.png" alt="image-20220319181318630" style="zoom: 80%;" />
 
-     * If the mean or the variance has changed substantially, then you can analyze this new segment of the input space, to see if the relationships learned still hold.
-     * Check whether the models residuals, that is the difference between its predictions and the labels, has changed as a function of your inputs. If, for example, you used to have small errors at one slice of the input and large in another, and now its switched, this could be evidence of a change in the relationship.
-     * If you have reason to believe that the relationship is changing over time, you can force the model to treat more recent observations as more important by writing a custom loss function, or by retraining the model on the most recent data.
+     * **<u>If the mean or the variance has changed substantially, then you can analyze this new segment of the input space, to see if the relationships learned still hold.</u>**
+     * **<u>Check whether the models residuals, that is the difference between its predictions and the labels, has changed as a function of your inputs.</u>** If, for example, you used to have small errors at one slice of the input and large in another, and now its switched, this could be evidence of a change in the relationship.
+     * If you have reason to believe that the relationship is changing over time, **<u>you can force the model to treat more recent observations as more important by writing a custom loss function, or by retraining the model on the most recent data.</u>**
 
 ### Adapting to data lab
 
@@ -418,24 +418,16 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
 
 ###  Training
 
-* What does high performance mean for hardware?
-  * To train models to same accuracy what is the performance boost in terms of time.
-
-* So when it comes to you training budget, you have three considerations-- three levers that you can adjust. These are 
-
-  * time: you need to train model every night and recommend products for the next day. 
-  * cost: 
-  * scale: how much of the training data will be used for training. Generally, the more data, the more accurate the model. But there are diminishing returns to larger and larger data sizes.
-    * a single, more expensive machine, or multiple cheaper machines?
-    * Use earlier model checkpoints.
-
 * Model training performance will be bound by one of three things: 
 
   <img src="images/image-20220320000510802.png" alt="image-20220320000510802" style="zoom:80%;" />
 
   * Input/output, which is how fast you can get data into the model for each training step.
     * Your ML training will be IO-bound if the number of inputs is large, heterogenous, requiring parsing, or if the model is so small that the compute requirements are trivial. This also tends to be the case if the input data is on a storage system with very low throughput.
-    * **<u>If you're IO-bound, look at storing the data more efficiently on a storage system with higher throughput, or parallelizing the reads. Although it's not ideal, you might also consider reducing the batch size so that you're reading less data in each step.</u>** 
+    * **<u>If you're IO-bound, **
+    * <u>**look at storing the data more efficiently on a storage system with higher throughput, **</u>
+    * <u>**parallelizing the reads. **</u>
+    * <u>**Although it's not ideal, you might also consider reducing the batch size so that you're reading less data in each step.**</u> 
   * the CPU, which is how fast you can compute the gradient in each training step.
     * Your ML training will be CPU-bound if the IO is simple, but the model involves lots of expensive computations. You will also encounter this situation if you're running a model on underpowered hardware.
     * Solutions:
@@ -493,7 +485,7 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
      * There are currently two approaches used to update the model using gradients from various devices, 
        * **<u>Synchronous Training</u>**: In synchronous training, all of the devices train their local model using different parts of data from a single, large mini-batch. 
          * They then communicate their locally calculated gradients, directly or indirectly, to all devices. In this approach, each worker device computes the forward and backward passes through the model on a different slice of input data.
-         * The computed gradients from each of these slices are then aggregated across all of the devices and reduced, usually using an average, in a process known as **<u>Allreduce.</u>**
+         * **<u>The computed gradients from each of these slices are then aggregated across all of the devices and reduced, usually using an average, in a process known as Allreduce.</u>**
          * The optimizer then performs the parameter updates with these reduced gradients, thereby keeping the devices in sync.
          * Because each worker cannot proceed to the next training step until all the other workers have finished the current step, this gradient calculation becomes the main overhead in distributed training for synchronous strategies.
          * Only after all devices have successfully computed and sent their gradients, so that all models are synchronized, is the model updated.
@@ -513,12 +505,12 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
 
        <img src="images/image-20220320003059068.png" alt="image-20220320003059068" style="zoom:67%;" />
 
-       * Choose Asynchonouse for 
-         * **<u>Sparse models</u>** as it shards the model across parameter servers, and workers only need to fetch the part they need for each step.
-         * For dense models, the parameter server transfers the whole model each step, and this can create a lot of network pressure.
-       * **<u>The synchronous Allreduce approach should be considered for dense models which contain many features and thus consume more memory.</u>**
-         * In this approach, all machines share the load of storing and maintaining the global parameters.
-         * This makes it the best option for dense models, like BERT, Bidirectional Encoder Representations from Transformers.
+       * <u>**Choose Asynchonouse for**</u> 
+         * <u>**Sparse models as it shards the model across parameter servers, and workers only need to fetch the part they need for each step.**</u>
+         * <u>**For dense models, the parameter server transfers the whole model each step, and this can create a lot of network pressure.**</u>
+       * <u>**The synchronous Allreduce approach should be considered for dense models which contain many features and thus consume more memory.**</u>
+         * <u>**In this approach, all machines share the load of storing and maintaining the global parameters.**</u>
+         * <u>**This makes it the best option for dense models, like BERT, Bidirectional Encoder Representations from Transformers.**</u>
 
   2. **<u>Model Parallelism</u>**: When a model is too big to fit on one device's memory, you can divide it into smaller parts on multiple devices and then compute over the same training samples.
 
@@ -547,7 +539,8 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
    * Step 3 <img src="images/image-20220320010241887.png" alt="image-20220320010241887" style="zoom:50%;" />
    * Step 4 <img src="images/image-20220320010317836.png" alt="image-20220320010317836" style="zoom: 67%;" />
    * Step 5 <img src="images/image-20220320010344937.png" alt="image-20220320010344937" style="zoom:67%;" />
-   * If you pass a batch size of 64 and you have two GPUs, then each machine will process 32 examples per step. In this case, 64 is known as the global batch size, and 32 is the per replica batch size. To make the most out of your GPUs, you'll want to scale the batch size by the number of replicas.
+   * If you pass a batch size of 64 and you have two GPUs, then each machine will process 32 examples per step. In this case, 64 is known as the global batch size, and 32 is the per replica batch size. 
+   * **<u>To make the most out of your GPUs, you'll want to scale the batch size by the number of replicas.</u>**
    * Step 6 <img src="images/image-20220320010826495.png" alt="image-20220320010826495" style="zoom:67%;" />
    * Step 7 <img src="images/image-20220320010844277.png" alt="image-20220320010844277" style="zoom:67%;" />
    * Summary: <img src="images/image-20220320010952023.png" alt="image-20220320010952023" style="zoom:50%;" />
@@ -609,7 +602,7 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
 
    * By default, Workers read and update these variables independently without synchronizing with each other.
 
-   * The Coordinator is a special task type that creates resources, dispatches training tasks, writes checkpoints and deals with task failures.
+   * **<u>The Coordinator is a special task type that creates resources, dispatches training tasks, writes checkpoints and deals with task failures.</u>**
 
    * You can create your parameter server strategy object just like you would for the other strategies.
 
@@ -662,15 +655,21 @@ TensorFlow Data Validation is a library for analyzing and validating machine lea
 
     4. So which of the 3 is the best?
   
-       * <img src="images/image-20220320014623733.png" alt="image-20220320014623733" style="zoom:80%;" />
-       * **<u>For batch prediction CMLE is the fastest</u>**
+       * <img src="images/image-20220329182719201.png" alt="image-20220329182719201" style="zoom:80%;" />
+       * CMLE = AI Platform batch prediction job
+       * **<u>For batch prediction CMLE is the fastest</u>** if preprocessed data is already in cloud storage
+       * If however it requires pre-processing step then its bettern to call the model directly from Dataflow, in which case CMLE is the worst.
        * But if you want maintainability, the second and third options reverse.
-
+  
   * **<u>Streaming Pipeline</u>**: (**<u>TF Saved Model is best for streaming.</u>**)
   
-    * <img src="images/image-20220320014730154.png" alt="image-20220320014730154" style="zoom:80%;" />
+    * <img src="images/image-20220329183349660.png" alt="image-20220329183349660" style="zoom:80%;" />
     
-    * <img src="images/image-20220320014742525.png" alt="image-20220320014742525" style="zoom:80%;" />
+    * <u>**Here also the direct method (loading model in dataflow directly) is faster than calling an http endpoint created in ai platform.**</u>
+    
+    * <u>**microbatvhing (waitin 1 second then sending accumulated requests at a time) helps both approaches**</u>
+    
+    * <img src="images/image-20220329183948962.png" alt="image-20220329183948962" style="zoom:80%;" />
     
       
 
@@ -783,7 +782,7 @@ Tensorflow Lite:
 
 ##  Summary
 
-<img src="images/image-20220320121449220.png" alt="image-20220320121449220" style="zoom:50%;" /><img src="images/image-20220320121504700.png" alt="image-20220320121504700" style="zoom:50%;" />
+<img src="images/image-20220320121449220.png" alt="image-20220320121449220" style="zoom:50%;" /><img src="images/image-20220320121504700.png" alt="image-20220320121504700" style="zoom: 80%;" />
 
 
 

@@ -126,15 +126,15 @@
 
 * L1 vs L2 
 
-  * In practice though usually the **<u>l2 norm provides more generalizable models than the l1 norm</u>** however we will end up with much more complex heavy models if we use l2 instead of l1.
-  * this happens because often features have high correlation with each other and l1 regularization will choose one of them and throw the other away whereas l2 regularization will keep both features and keep their weight magnitudes small.
+  * <u>**In practice though usually the l2 norm provides more generalizable models than the l1 norm however we will end up with much more complex heavy models if we use l2 instead of l1.**</u>
+  * **this happens because often features have high correlation with each other and l1 regularization will choose one of them and throw the other away whereas l2 regularization will keep both features and keep their weight magnitudes small.**
   * so with L1 you can end up with a smaller model but it may be less predictive.
 
 * Best of both worlds? (L1 and L2)
 
   * <img src="images/image-20220316153827092.png" alt="image-20220316153827092" style="zoom:80%;" />
 
-  * The **<u>elastic net</u>** is just a linear combination of the l1 and l2 regulation penalties, this way you get both
+  * **<u>The elastic net is just a linear combination of the l1 and l2 regulation penalties, this way you get both</u>**
 
     * the benefits of sparsity for really poor predictive features 
     * while also keeping decent and great features with smaller weights to provide good generalization 
@@ -146,7 +146,7 @@
 
     * Whenever we are doing regularization techniques we are adding a penalty term to the loss function or in general the objective function so that it doesn't over optimize our decision variables or parameter weights 
     * We choose the penalty terms based on prior knowledge function state etc 
-    * l1 organization has been shown to induce sparsity to the model and due to its probability distribution having a high peak at zero most weights except for the highly predictive ones will be shifted from their non-regularized values to zero
+    * l1 regularization has been shown to induce sparsity to the model and due to its probability distribution having a high peak at zero most weights except for the highly predictive ones will be shifted from their non-regularized values to zero
     * l2 regularization would be used for having small magnitudes and its negative would be used for having large magnitudes which are both incorrect 
     * having all positive values would be like adding many additional constraints to the optimization problem bounding all decision variables to be greater than zero which is also not l1 regularization
 

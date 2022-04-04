@@ -80,6 +80,8 @@ Statistics is generally used when data is limited and ML when data is in abundan
 
 ###  Beam and Dataflow
 
+* It (Dataflow) can load and execute model files directly by itself at the time of prediction.
+
 * Cloud dataflow is a serverless a fully managed offering from google that allows you to run data processing pipelines.
 
 * Dataflow can run pipelines written in python and java programming languages
@@ -93,7 +95,7 @@ Statistics is generally used when data is limited and ML when data is in abundan
   * next in your pipeline you can group lines by the number of words using grouping and other aggregation operations you can also filter out values for example to ignore lines with fewer than 10 words 
   * once all the transformation grouping and filtering operations are done the pipeline writes the result to google cloud storage notice that this implementation separates the pipeline definition from the pipeline execution all the steps that you see before call to the p.run method are just defining what the pipeline should do 
   * the pipeline actually gets executed only when you call the run method 
-  * one of the coolest things about apache beam is that it supports both batch and streaming data processing using the same pipeline code
+  * **<u>one of the coolest things about apache beam is that it supports both batch and streaming data processing using the same pipeline code</u>**
 
 <img src="images/image-20220314162155668.png" alt="image-20220314162155668" style="zoom:80%;" />
 
@@ -131,13 +133,13 @@ Statistics is generally used when data is limited and ML when data is in abundan
 
 * If you want to take a transformation in your data processing pipeline and let dataflow run it at scale with automatic distribution across many nodes in a cluster then you should use the apache beams **<u>ParDo</u>** class
 
-* ParDo (Parallel Do)
+* **<u>ParDo (Parallel Do)</u>**
 
   ![image-20220314170020590](images/image-20220314170020590.png)
 
   
 
-###  Preprocessing with Dataprep
+###  Preprocessing with Dataprep (visual data ui with the dataflow backend)
 
 Cloud data prep lets you use an interactive graphical user interface to better understand visualize and pre-process your data.
 
@@ -169,7 +171,7 @@ Feature cross are more relavant in the context of linear/simpler models. Neural 
 * Optimizing Linear models is a convex problems, a NN with many layers is a non-convex problem. Convex problems are much simpler to optimize for. Remember that convexity is a property of the hyper-parameter space to have a global minimum. For example a 3d graph of x^2 has a definite global minimum at x=0
 * feature crosses are a way to bring non-linear inputs to a linear learner
 * **<u>Although feature cross offer a simpler model they come at the cost of memorization of the input space.</u>**
-* feature crosses allow a linear model to memorize large data sets the idea is you can assign a weight to each feature cross and this way the model learns about combinations of features so even though it's a linear model the actual underlying relationship between inputs and outputs is non-linear
+* **<u>feature crosses allow a linear model to memorize large data sets the idea is you can assign a weight to each feature cross and this way the model learns about combinations of features so even though it's a linear model the actual underlying relationship between inputs and outputs is non-linear</u>**
 * <img src="images/image-20220315005246312.png" alt="image-20220315005246312" style="zoom:80%;" />
 * feature crosses allow you to have a simple model but still get non-linearity
 * **<u>Feature Crosses only work on categorical features (if you have continueous features, then discritize them first.)</u>**
@@ -212,7 +214,8 @@ Feature cross are more relavant in the context of linear/simpler models. Neural 
 
 * Although feature cross offer a simpler model they come at the cost of memorization of the input space.
 
-* So when should we use feature cross?
+* **<u>So when should we use feature cross?</u>**
+  
   * When you have large amounts of data (which is not the case with general statistics as compared to ML) and the distribution of data in each grid sell is statistically significant.
   * Memorization works when you have so much data that for any single grid cell in your input space the distribution of data is statistically. when that's the case you can memorize essentially just learning the mean for every grid cell 
   * **<u>Alternatively to feature cross, in you're using a neural network you can also choose to add more layers instead of using feature crosses</u>**
@@ -224,8 +227,8 @@ Feature cross are more relavant in the context of linear/simpler models. Neural 
   * x2 : car color
   * Known condition, yellow cars in NY and white cars in Rome are taxis.
   * We use feature cross to solve this.<img src="images/image-20220315004431702.png" alt="image-20220315004431702" style="zoom:67%;" />
-  * using feature crosses plus massive data is a very efficient strategy for learning highly complex spaces 
-  * neural networks provide another way to learn highly complex spaces but feature crosses let linear models stay in the game without feature crosses the expressivity of linear models would be quite limited
+  * **<u>using feature crosses plus massive data is a very efficient strategy for learning highly complex spaces</u>** 
+  * **<u>neural networks provide another way to learn highly complex spaces but feature crosses let linear models stay in the game without feature crosses the expressivity of linear models would be quite limited</u>**
   * feature crosses allow a linear model to memorize large data sets the idea is you can assign a weight to each feature cross and this way the model learns about combinations of features so even though it's a linear model the actual underlying relationship between inputs and outputs is non-linear
   * <img src="images/image-20220315005314041.png" alt="image-20220315005314041" style="zoom:80%;" />
 
