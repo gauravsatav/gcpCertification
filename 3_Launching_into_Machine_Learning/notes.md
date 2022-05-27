@@ -58,8 +58,18 @@
       * Categorical-Categorical
 
         * Chi-Squared: Given <img src="images/image-20220326130051612.png" alt="image-20220326130051612" style="zoom:67%;" />
+        * Basically in a chi squared test we're determining the null hypothesis to be valid or not, the chi squared value (i.e. X^2) ranges from 0 to infinity.
+        * If the null hypothesis is true (i.e. the results are not correlated) then this value of X^2 is close to 0.
+        * THe more the value of X^2 then null hypothesis is voided.
+        * This threshold of value below which the null hypothesis is voided is determined by looking at the value of the distribution in the table.
+       
 
           * Step 1: Calculate the below two tables
+          
+          Expected Table is calculated by summing up the row for eg first row sum is 13
+          Then multiply it by summing the totals i.e. 43+49 = 92
+          
+          Expected for female for first row is then, 13*(43/92) = 6.08
 
           <img src="images/image-20220326125813933.png" alt="image-20220326125813933" style="zoom:50%;" />
 
