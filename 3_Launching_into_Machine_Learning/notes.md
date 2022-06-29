@@ -122,7 +122,7 @@ UnderSampling
 
 * To avoid data imbalance you have 2 options
   * Downsample Majority Class
-  * Upweight (give more importance)  minority class. So while preparing data for training, more samples from this will be used.
+  * Upweight downsampled/majority class : give more importance to the loss calculated on majority class. Since we have downsampled the majority class, for the output to be interpreted as probability, we have to give more importance to the MAJORITY class.
 
 ###  Practical ML
 
