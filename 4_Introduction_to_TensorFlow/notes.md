@@ -142,6 +142,14 @@ Wide and deep architecture.
       * Find the mini batch mean and sd.
       * Normalize input to that node.
   *  Batch Normalization Uses:
+      *  Batch normalization ensures that the input distribution received by each layer during a forward pass has mean=0 and sd = 1
+      *  Batch Normalization is performed at every layer of the neural net during the forward pass.
+      *  If each layer is normalised, the weight changes made by the previous layer and noise between data is partially lost, as some non-linear relationships are lost during normalisation. This can lead to suboptimal weights being passed on.
+      *  To fix this, batch normalisation adds two trainable parameters, gamma γ and beta β, which can scale and shift the normalised value.
+      *  ![image](https://user-images.githubusercontent.com/10461009/182266683-869961e3-a6c4-45ea-b0b7-257ece820a8e.png)
+      *  Stochastic gradient descent can tune γ and β during standard backpropagation to find the optimal distribution such that the noise between data and sparseness of the weight changes are accounted for. Essentially, these parameters scale and shift the normalised input distribution to suit the peculiarities of the given dataset.
+      *  ![image](https://user-images.githubusercontent.com/10461009/182267054-fb944cfa-1453-4ef7-89ba-0ad1cf50cda6.png)
+
       *  Internal Covariate Shift: After each epoch, every neuron gets a slightly different distribution of input.
       *  Vanishing and exploding gradients.
       *  [https://towardsdatascience.com/batch-normalisation-explained-5f4bd9de5feb](https://towardsdatascience.com/batch-normalisation-explained-5f4bd9de5feb)
