@@ -141,6 +141,12 @@ Wide and deep architecture.
     * Batch Normalization : **Solves the problem of internal covariate shift,** it speeds up training because gradients will then flow better. Using this enables us to use higher learning rate and also helps in getting rid of dropouts. How to do it?
       * Find the mini batch mean and sd.
       * Normalize input to that node.
+  *  Batch Normalization Uses:
+      *  Internal Covariate Shift: After each epoch, every neuron gets a slightly different distribution of input.
+      *  Vanishing and exploding gradients.
+      *  [https://towardsdatascience.com/batch-normalisation-explained-5f4bd9de5feb](https://towardsdatascience.com/batch-normalisation-explained-5f4bd9de5feb)
+      *  For small mini-batch size, use Batch-Renormalization instead of Batch-normalization. In this case it makes the estimates of the variable mean and standard deviation more stable across mini-batches. 
+      *  [https://machinelearningmastery.com/batch-normalization-for-training-of-deep-neural-networks/](https://machinelearningmastery.com/batch-normalization-for-training-of-deep-neural-networks/)
 
   * Relu Layers can Die:
 
